@@ -1,0 +1,8 @@
+# RunFunMan TTS 배치 생성용 의존성
+# Audio8/Audio8-TTS-Preview-0.1b 는 trust_remote_code 로 모델 코드를 내려받아 실행한다.
+# 필요한 핵심 패키지만 적었다. 모델 원격 코드가 추가 패키지를 요구하면 그때 안내에 따라 설치한다.
+
+transformers>=4.44
+soundfile>=0.12
+# torch 는 아래 설치 안내 참고. CPU/GPU에 따라 설치 방법이 다르므로 여기서 버전을 고정하지 않는다.
+# torch>=2.2

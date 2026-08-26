@@ -6,7 +6,8 @@
 ._*
 
 # Custom folder icons
-Icon
+Icon
+
 
 # Volume root files
 .DocumentRevisions-V100
@@ -16,3 +17,7 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+
+### RunFunMan TTS
+# 생성된 음성과 참조 음성은 저장소에 올리지 않는다 (용량 큼 / 개인 목소리)
+tts/*.wav
