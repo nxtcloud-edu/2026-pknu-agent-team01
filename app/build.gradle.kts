@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -17,6 +19,16 @@ android {
         versionName = "0.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Spotify 인증 정보를 local.properties에서 읽어 BuildConfig에 주입
+        val localProps = rootProject.file("local.properties")
+        val props = Properties()
+        if (localProps.exists()) props.load(localProps.inputStream())
+
+        buildConfigField("String", "SPOTIFY_CLIENT_ID",
+            "\"${props.getProperty("SPOTIFY_CLIENT_ID", "")}\"")
+        buildConfigField("String", "SPOTIFY_REDIRECT_URI",
+            "\"${props.getProperty("SPOTIFY_REDIRECT_URI", "runningapp://callback")}\"")
     }
 
     buildTypes {
@@ -38,6 +50,10 @@ android {
         jvmTarget = "17"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
@@ -56,6 +72,18 @@ dependencies {
 
     // GPS (Fused Location Provider)
     implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // Spotify Web API 연동
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("androidx.browser:browser:1.8.0")
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // YouTube 오디오 추출 (NewPipe Extractor)
+    implementation("com.github.TeamNewPipe:NewPipeExtractor:v0.26.5")
+
+    // ExoPlayer (오디오 재생)
+    implementation("androidx.media3:media3-exoplayer:1.3.1")
+    implementation("androidx.media3:media3-datasource-okhttp:1.3.1")
 
     // Unit tests — 러닝 모듈(JUnit4 + Truth)
     testImplementation("junit:junit:4.13.2")
