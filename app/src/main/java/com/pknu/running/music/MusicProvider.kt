@@ -1,8 +1,8 @@
-package music
+package com.pknu.running.music
 
-import music.model.Playlist
-import music.model.Track
-import music.model.TrackMetadata
+import com.pknu.running.music.model.Playlist
+import com.pknu.running.music.model.Track
+import com.pknu.running.music.model.TrackMetadata
 
 /**
  * 외부 음악 서비스와의 통신을 추상화하는 인터페이스.

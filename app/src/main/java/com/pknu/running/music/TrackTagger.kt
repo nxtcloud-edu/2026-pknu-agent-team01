@@ -1,9 +1,9 @@
-package music
+package com.pknu.running.music
 
-import music.model.MusicTag
-import music.model.TaggedTrack
-import music.model.Track
-import music.model.TrackMetadata
+import com.pknu.running.music.model.MusicTag
+import com.pknu.running.music.model.TaggedTrack
+import com.pknu.running.music.model.Track
+import com.pknu.running.music.model.TrackMetadata
 
 /**
  * 트랙의 BPM/장르/즐겨찾기 정보를 기반으로 MusicTag를 부여한다.

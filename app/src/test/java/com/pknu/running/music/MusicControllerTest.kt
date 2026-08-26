@@ -1,8 +1,8 @@
-package music
+package com.pknu.running.music
 
 import kotlinx.coroutines.runBlocking
-import music.model.*
-import music.provider.MockMusicAdapter
+import com.pknu.running.music.model.*
+import com.pknu.running.music.provider.MockMusicAdapter
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

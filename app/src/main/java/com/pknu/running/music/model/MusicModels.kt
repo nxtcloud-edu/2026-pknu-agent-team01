@@ -1,4 +1,4 @@
-package music.model
+package com.pknu.running.music.model
 
 /**
  * 음악 태그 — 트랙의 분위기/용도를 분류한다.

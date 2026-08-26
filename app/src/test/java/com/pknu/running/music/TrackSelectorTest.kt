@@ -1,10 +1,10 @@
-package music
+package com.pknu.running.music
 
-import music.model.MusicRule
-import music.model.MusicTag
-import music.model.PlayMode
-import music.model.TaggedTrack
-import music.model.Track
+import com.pknu.running.music.model.MusicRule
+import com.pknu.running.music.model.MusicTag
+import com.pknu.running.music.model.PlayMode
+import com.pknu.running.music.model.TaggedTrack
+import com.pknu.running.music.model.Track
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

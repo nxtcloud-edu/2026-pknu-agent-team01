@@ -1,8 +1,8 @@
-package music
+package com.pknu.running.music
 
-import music.model.MusicTag
-import music.model.Track
-import music.model.TrackMetadata
+import com.pknu.running.music.model.MusicTag
+import com.pknu.running.music.model.Track
+import com.pknu.running.music.model.TrackMetadata
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
