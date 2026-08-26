@@ -9,6 +9,10 @@ build/
 *.iws
 .kiro/
 
+
+# Custom folder icons
+Icon
+
 ### Kotlin
 *.class
 
@@ -30,15 +34,12 @@ Icon
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
-### OS — Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-### Logs
-*.log
-
-### Local env
-.env
+### Android / Gradle
+.gradle/
+build/
 local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
