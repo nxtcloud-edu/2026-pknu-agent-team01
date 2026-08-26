@@ -143,6 +143,8 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
                         player.setMediaItem(mediaItem)
                         player.prepare()
                         player.playWhenReady = true
+                        // 인트로 무음 구간 스킵 (5.0초)
+                        player.seekTo(5000L)
                     }
                     _ui.value = _ui.value.copy(statusMessage = "♪ YouTube 재생: ${resolved.title}")
                 } else {
@@ -278,13 +280,6 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
 
     fun play() = action {
         controller.play()
-        // YouTube 모드면 현재 곡을 YouTube로 재생
-        if (youtubeEnabled) {
-            val track = controller.getCurrentTrack()
-            if (track != null) {
-                playViaYouTube(track.track.title, track.track.artist)
-            }
-        }
     }
 
     fun pause() = action {
@@ -300,12 +295,6 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
     fun next() = action {
         if (youtubeEnabled) exoPlayer?.stop()
         controller.next()
-        if (youtubeEnabled) {
-            val track = controller.getCurrentTrack()
-            if (track != null) {
-                playViaYouTube(track.track.title, track.track.artist)
-            }
-        }
     }
 
     fun stop() = action {
@@ -338,6 +327,8 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    private var lastYouTubeTrackId: String? = null
+
     private fun publish() {
         val track = controller.getCurrentTrack()
         _ui.value = _ui.value.copy(
@@ -349,6 +340,17 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
             currentTags = track?.tags?.toList() ?: emptyList(),
             isEventTrack = controller.isPlayingEventTrack(),
         )
+
+        // YouTube 모드: 곡이 바뀌었으면 자동으로 YouTube 재생
+        if (youtubeEnabled && track != null && controller.getPlaybackState() == PlaybackState.PLAYING) {
+            if (track.track.id != lastYouTubeTrackId) {
+                lastYouTubeTrackId = track.track.id
+                playViaYouTube(track.track.title, track.track.artist)
+            }
+        }
+        if (controller.getPlaybackState() != PlaybackState.PLAYING) {
+            lastYouTubeTrackId = null
+        }
     }
 
     override fun onCleared() {
