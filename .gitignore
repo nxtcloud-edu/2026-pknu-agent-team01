@@ -43,3 +43,8 @@ local.properties
 captures/
 .externalNativeBuild/
 .cxx/
+
+### Signing (배포 서명 관련 — 절대 커밋 금지)
+*.jks
+*.keystore
+keystore.properties

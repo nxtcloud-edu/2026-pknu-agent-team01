@@ -12,6 +12,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.text.InputType
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -77,7 +79,7 @@ class RunningFragment : Fragment() {
 
     private val requestPermission = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) { granted -> if (granted) startRealRun() }
+    ) { granted -> if (granted) showGpsSetupDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -472,12 +474,65 @@ class RunningFragment : Fragment() {
         val granted = ContextCompat.checkSelfPermission(
             requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
-        if (granted) startRealRun() else requestPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        // 권한이 있으면 곧바로 목표 설정 창을, 없으면 권한 요청 후 목표 설정 창을 띄운다.
+        if (granted) showGpsSetupDialog() else requestPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
-    private fun startRealRun() {
+    /**
+     * GPS 러닝 시작 전 목표(거리·페이스)를 입력받는 설정 창.
+     * 입력값은 모두 선택 사항이며, 비워두면 목표 없이 러닝을 시작한다.
+     */
+    private fun showGpsSetupDialog() {
+        val ctx = requireContext()
+
+        val distanceInput = EditText(ctx).apply {
+            hint = "목표 거리 (km, 예: 5)"
+            inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+            setTextColor(Palette.TEXT_MAIN)
+            setHintTextColor(Palette.TEXT_SUB)
+        }
+        val paceInput = EditText(ctx).apply {
+            hint = "목표 페이스 (분/km, 예: 6)"
+            inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+            setTextColor(Palette.TEXT_MAIN)
+            setHintTextColor(Palette.TEXT_SUB)
+        }
+
+        val container = LinearLayout(ctx).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(ctx.dp(24), ctx.dp(16), ctx.dp(24), ctx.dp(8))
+            addView(TextView(ctx).apply {
+                text = "GPS로 실제 러닝을 시작합니다.\n목표를 설정하세요. (비워두면 목표 없음)"
+                setTextColor(Palette.TEXT_SUB)
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
+                setLineSpacing(ctx.dp(4).toFloat(), 1f)
+            })
+            addView(ctx.verticalSpacer(ctx.dp(12)))
+            addView(distanceInput)
+            addView(ctx.verticalSpacer(ctx.dp(8)))
+            addView(paceInput)
+        }
+
+        AlertDialog.Builder(ctx)
+            .setTitle("GPS 러닝 설정")
+            .setView(container)
+            .setPositiveButton("시작") { d, _ ->
+                val distanceKm = distanceInput.text.toString().trim().toDoubleOrNull()
+                val paceMinPerKm = paceInput.text.toString().trim().toDoubleOrNull()
+                val target = RunningTarget(
+                    distanceMeter = distanceKm?.let { it * 1000.0 },
+                    paceSecPerKm = paceMinPerKm?.let { it * 60.0 },
+                )
+                startRealRun(target)
+                d.dismiss()
+            }
+            .setNegativeButton("취소") { d, _ -> d.dismiss() }
+            .show()
+    }
+
+    private fun startRealRun(target: RunningTarget) {
         val provider = FusedLocationProvider(requireContext())
-        vm.startRealRun(provider, RunningTarget(distanceMeter = 5000.0, paceSecPerKm = 360.0))
+        vm.startRealRun(provider, target)
     }
 
     override fun onDestroyView() {
