@@ -2,7 +2,10 @@
 # Audio8/Audio8-TTS-Preview-0.1b 는 trust_remote_code 로 모델 코드를 내려받아 실행한다.
 # 필요한 핵심 패키지만 적었다. 모델 원격 코드가 추가 패키지를 요구하면 그때 안내에 따라 설치한다.
 
-transformers>=4.44
+# 이 모델의 원격 코드는 falcon_h1 백본을 쓰는데, transformers 5.x 에서 관련 클래스가
+# 바뀌어 임포트 에러가 난다. 모델 config 가 명시한 4.57.x 계열로 고정한다.
+transformers==4.57.1
 soundfile>=0.12
-# torch 는 아래 설치 안내 참고. CPU/GPU에 따라 설치 방법이 다르므로 여기서 버전을 고정하지 않는다.
-# torch>=2.2
+# 참조 음성 리샘플링에 torchaudio 가 필요하다. torch 와 같은 CPU 인덱스에서 설치할 것.
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+# torch / torchaudio 는 CPU/GPU에 따라 설치 방법이 다르므로 여기서 버전을 고정하지 않는다.

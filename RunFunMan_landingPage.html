@@ -316,7 +316,7 @@ code{background:var(--surface-alt);border:1px solid var(--border);border-radius:
     </div>
     <p class="rfm-hint">데모용 시뮬레이션입니다. 나레이션은 준비된 음성 파일로, 없으면 브라우저 음성으로 재생됩니다. 실제 GPS·음악 연동은 앱에서 동작합니다.</p>
   </div>
-</div></div></div></div></section><section id="cta" class="sec sec-cta bg-primary" data-reveal><div class="wrap"><div class="cta-box center"><h2>다음 러닝은 지루하지 않게</h2><p class="lead">달리기가 게임이 되는 순간을 위에서 직접 눌러보세요.</p><div class="ctarow center"><a class="btn btn-primary" href="#preview">미리듣기 체험하기</a></div><p class="note">몇 초면 됩니다</p></div></div></section><footer class="foot"><div class="wrap foot-in"><div><p class="foot-brand">RunFunMan</p><div class="foot-body"><p>부경대학교 AI Agent 1팀이 만들고 있습니다.</p></div></div><nav class="foot-links"><a href="https://github.com">GitHub</a><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></nav></div><div class="wrap foot-legal">© RunFunMan. All rights reserved.</div></footer>
+</div></div></div></div></section><footer class="foot"><div class="wrap foot-in"><div><p class="foot-brand">RunFunMan</p><div class="foot-body"><p>부경대학교 AI Agent 1팀이 만들고 있습니다.</p></div></div><nav class="foot-links"><a href="https://github.com">GitHub</a><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></nav></div><div class="wrap foot-legal">© RunFunMan. All rights reserved.</div></footer>
 <script>
 (function(){
   var b=document.querySelector('[data-menu]'),p=document.querySelector('[data-menu-panel]');
@@ -471,18 +471,17 @@ code{background:var(--surface-alt);border:1px solid var(--border);border-radius:
       if(curAudio){try{curAudio.pause();}catch(e){}curAudio.onended=null;curAudio.onerror=null;curAudio=null;}
       if(synth){try{synth.cancel();}catch(e){}}
     }
-    // 나레이션 재생: tts/<file> 이 있으면 그 음성을, 없으면 브라우저 음성으로.
-    // 어느 경우든 마지막에 음악 트랙 라벨까지 읽어 화면 텍스트를 모두 소리로 전한다.
+    // 나레이션 재생: tts/<file> 이 있으면 그 음성만 재생(음악 트랙 라벨은 읽지 않음).
+    // 파일이 없거나 재생이 막히면 브라우저 음성으로 폴백하고, 이때만 트랙 라벨까지 이어 읽는다.
     function narrate(spokenText,tone,file,trackText){
       if(muted)return;
       stopAudio();
       var trackLine=trackToSpeech(trackText);
-      function readTrack(){ if(!muted&&trackLine) speak(trackLine,'neutral'); }
       if(file){
         var a=new Audio(TTS_DIR+file);
         curAudio=a;
-        a.onended=function(){curAudio=null;readTrack();};
-        a.onerror=function(){ // 파일 없음/차단 -> 브라우저 음성 폴백
+        a.onended=function(){curAudio=null;}; // 실제 음성 재생 성공 -> 트랙 라벨은 읽지 않음
+        a.onerror=function(){ // 파일 없음/차단 -> 브라우저 음성 폴백(+트랙 라벨)
           curAudio=null;
           speakThenTrack(spokenText,tone,trackLine);
         };

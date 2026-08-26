@@ -1,4 +1,4 @@
-"""
+r"""
 RunFunMan 미리듣기용 TTS 배치 생성 스크립트
 
 manifest.json 에 정의된 모든 문장을 Audio8 TTS 모델로 한 번에 생성해서
@@ -31,7 +31,7 @@ HERE = Path(__file__).resolve().parent
 # 참조 음성과 그 전사. reference.wav 를 이 폴더에 두고,
 # 아래 텍스트를 그 음성이 실제로 말하는 문장으로 바꾼다.
 REFERENCE_AUDIO = str(HERE / "reference.wav")
-REFERENCE_TEXT = "이대로만 계속 뛰어봅시다."
+REFERENCE_TEXT = "챙겨주지 않으면 가뜩이나 강한 자외선에 기미나 잡티가 더 많아질 수 있거든요. 그럴때 자외선 차단도 되고 기미까지 케어되는 제품이 있는데요."
 
 MODEL_ID = "Audio8/Audio8-TTS-Preview-0.1b"
 
