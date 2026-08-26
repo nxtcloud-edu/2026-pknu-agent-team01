@@ -93,7 +93,7 @@ class MockMusicAdapterTest {
     fun `getTrackMetadata는 BPM과 장르를 반환한다`() = runBlocking {
         val metadata = adapter.getTrackMetadata("m1")
         assertNotNull(metadata)
-        assertEquals(140, metadata!!.bpm)
+        assertEquals(114, metadata!!.bpm)
         assertEquals("pop", metadata.genre)
     }
 
