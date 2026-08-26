@@ -1,15 +1,31 @@
-### macOS
-# Finder metadata
-.DS_Store
+### Gradle
+build/
+.gradle/
 
-# Thumbnails
-._*
+### IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.kiro/
+
 
 # Custom folder icons
 Icon
 
+### Kotlin
+*.class
 
-# Volume root files
+### Java
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+### OS — macOS
+.DS_Store
+._*
+Icon
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100

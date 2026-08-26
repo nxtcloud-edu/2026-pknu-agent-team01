@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "RunningApp"
 include(":app")
+rootProject.name = "running-app-music"
