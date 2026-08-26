@@ -159,10 +159,10 @@ class SpotifyApi(
 
     // --- HTTP Helpers ---
 
-    private suspend fun get(path: String): JSONObject? {
+    private suspend fun get(path: String): JSONObject? = withContext(Dispatchers.IO) {
         val token = authManager.getAccessToken() ?: run {
             Log.e(TAG, "No access token available")
-            return null
+            return@withContext null
         }
 
         val request = Request.Builder()
@@ -171,7 +171,7 @@ class SpotifyApi(
             .get()
             .build()
 
-        return try {
+        try {
             val response = httpClient.newCall(request).execute()
             when {
                 response.isSuccessful -> {
@@ -194,10 +194,10 @@ class SpotifyApi(
         }
     }
 
-    private suspend fun put(path: String, jsonBody: String?): JSONObject? {
+    private suspend fun put(path: String, jsonBody: String?): JSONObject? = withContext(Dispatchers.IO) {
         val token = authManager.getAccessToken() ?: run {
             Log.e(TAG, "No access token available")
-            return null
+            return@withContext null
         }
 
         val body = jsonBody?.toRequestBody("application/json".toMediaType())
@@ -209,11 +209,10 @@ class SpotifyApi(
             .put(body)
             .build()
 
-        return try {
+        try {
             val response = httpClient.newCall(request).execute()
             when {
                 response.isSuccessful || response.code == 204 -> {
-                    // 성공 - PUT은 보통 204 No Content 반환
                     JSONObject().put("success", true)
                 }
                 response.code == 401 -> {
