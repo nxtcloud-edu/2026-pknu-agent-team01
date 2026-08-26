@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>모두의 팀빌딩 — 해커톤 팀원, 10분이면 찾습니다</title>
+<meta name="description" content="흩어진 오픈채팅방을 뒤지지 않아도 됩니다. 기술 스택과 참여 가능 시간만 적으면 맞는 팀을 바로 보여줍니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🤝%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="모두의 팀빌딩 — 해커톤 팀원, 10분이면 찾습니다"><meta property="og:description" content="흩어진 오픈채팅방을 뒤지지 않아도 됩니다. 기술 스택과 참여 가능 시간만 적으면 맞는 팀을 바로 보여줍니다."><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>:root{--bg:#fafafb;--bg-alt:#f2f2f5;--surface:#ffffff;--surface-alt:#f7f7fa;--border:#e3e3e9;--text:#131318;--text-muted:#5e5e6b;--primary:#6d3bf5;--primary-hover:#5a2ad6;--primary-soft:#eee7ff;--on-primary:#ffffff;--accent:#ff5c8a;--accent-soft:#ffe4ec;--ring:rgba(109,59,245,0.35);--hero-bg:linear-gradient(160deg,#131318 0%,#2c1a5e 55%,#6d3bf5 100%);--hero-text:#ffffff;--hero-text-muted:#c5bcdf;--shadow:0 18px 44px -22px rgba(19,19,24,0.42);--font-sans:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;--font-display:'Pretendard Variable', Pretendard, -apple-system, sans-serif;--r-btn:10px;--r-card:16px;--pad:clamp(4rem,8vw,6.5rem);color-scheme:light dark}@media (prefers-color-scheme:dark){:root:not([data-theme='light']){--bg:#08080b;--bg-alt:#0e0e13;--surface:#131319;--surface-alt:#1a1a22;--border:#26262f;--text:#eeeef4;--text-muted:#9a9aab;--primary:#9b7bff;--primary-hover:#b199ff;--primary-soft:#1c1730;--on-primary:#0a0714;--accent:#ff5c8a;--accent-soft:#2e1420;--ring:rgba(155,123,255,0.4);--hero-bg:linear-gradient(160deg,#0a0714 0%,#241553 55%,#5a2ad6 100%);--hero-text:#ffffff;--hero-text-muted:#b8aade;--shadow:0 18px 44px -22px rgba(0,0,0,0.75);}}:root[data-theme='dark']{--bg:#08080b;--bg-alt:#0e0e13;--surface:#131319;--surface-alt:#1a1a22;--border:#26262f;--text:#eeeef4;--text-muted:#9a9aab;--primary:#9b7bff;--primary-hover:#b199ff;--primary-soft:#1c1730;--on-primary:#0a0714;--accent:#ff5c8a;--accent-soft:#2e1420;--ring:rgba(155,123,255,0.4);--hero-bg:linear-gradient(160deg,#0a0714 0%,#241553 55%,#5a2ad6 100%);--hero-text:#ffffff;--hero-text-muted:#b8aade;--shadow:0 18px 44px -22px rgba(0,0,0,0.75);}:root[data-theme='light']{--bg:#fafafb;--bg-alt:#f2f2f5;--surface:#ffffff;--surface-alt:#f7f7fa;--border:#e3e3e9;--text:#131318;--text-muted:#5e5e6b;--primary:#6d3bf5;--primary-hover:#5a2ad6;--primary-soft:#eee7ff;--on-primary:#ffffff;--accent:#ff5c8a;--accent-soft:#ffe4ec;--ring:rgba(109,59,245,0.35);--hero-bg:linear-gradient(160deg,#131318 0%,#2c1a5e 55%,#6d3bf5 100%);--hero-text:#ffffff;--hero-text-muted:#c5bcdf;--shadow:0 18px 44px -22px rgba(19,19,24,0.42);}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);
+  font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  word-break:keep-all;overflow-wrap:break-word}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{font-family:var(--font-display);line-height:1.25;letter-spacing:-.02em;margin:0 0 .5em;
+  text-wrap:balance;font-weight:800;word-break:keep-all}
+h1{font-size:clamp(2rem,5.2vw,3.6rem)}
+h2{font-size:clamp(1.6rem,3.4vw,2.4rem)}
+h3{font-size:1.12rem;font-weight:700}
+p{margin:0 0 1em}
+p:last-child{margin-bottom:0}
+code{background:var(--surface-alt);border:1px solid var(--border);border-radius:6px;
+  padding:.1em .38em;font-size:.88em}
+:focus-visible{outline:3px solid var(--ring);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+.center{text-align:center}
+
+/* 섹션 */
+.sec{padding:var(--pad) 0;position:relative}
+.sec.bg-base{background:var(--bg)}
+.sec.bg-alt{background:var(--bg-alt)}
+.sec.bg-surface{background:var(--surface)}
+.sec.bg-hero{background:var(--hero-bg);color:var(--hero-text)}
+.sec.bg-hero .lead,.sec.bg-hero .eyebrow,.sec.bg-hero .note{color:var(--hero-text-muted)}
+.sec.bg-hero h1,.sec.bg-hero h2{color:var(--hero-text)}
+.sec.bg-primary{background:var(--primary);color:var(--on-primary)}
+.sec.bg-primary h2{color:var(--on-primary)}
+.sec.bg-primary .lead,.sec.bg-primary .note{color:var(--on-primary);opacity:.85}
+.sechead{max-width:62ch;margin:0 0 2.75rem}
+.sechead.center{margin-inline:auto}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--primary);margin:0 0 .7rem}
+.lead{font-size:clamp(1.02rem,1.7vw,1.2rem);color:var(--text-muted);margin:0;text-wrap:pretty}
+.prose{max-width:66ch;color:var(--text-muted)}
+.prose.center{margin-inline:auto}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45em;
+  padding:.82em 1.55em;border-radius:var(--r-btn);font-weight:700;font-size:.98rem;
+  border:1.5px solid transparent;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s;
+  text-decoration:none!important;font-family:inherit;line-height:1.2}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--primary);color:var(--on-primary);box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--primary-hover)}
+.btn-secondary{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.btn-ghost{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.btn-sm{padding:.6em 1.1em;font-size:.9rem}
+.btn-block{display:flex;width:100%;margin-top:1.25rem}
+.bg-hero .btn-secondary,.bg-primary .btn-secondary{background:transparent;color:inherit;border-color:currentColor}
+.bg-primary .btn-primary{background:var(--surface);color:var(--primary)}
+.ctarow{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.ctarow.center{justify-content:center}
+.note{font-size:.85rem;color:var(--text-muted);margin:.9rem 0 0}
+
+/* 헤더 */
+.nav{position:sticky;top:0;z-index:50;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--border)}
+.nav-in{display:flex;align-items:center;gap:1rem;height:64px}
+.brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.05rem;
+  color:var(--text);text-decoration:none!important;flex:0 0 auto}
+.logo-img{height:28px;width:auto}
+.nav-links{display:flex;gap:.35rem;margin-left:auto;flex-wrap:wrap}
+.nav-links a{padding:.45rem .75rem;border-radius:8px;font-size:.94rem;font-weight:600;
+  color:var(--text-muted);text-decoration:none!important}
+.nav-links a:hover{color:var(--text);background:var(--surface-alt)}
+.nav-act{display:flex;align-items:center;gap:.5rem;margin-left:.5rem}
+.tgl{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface);
+  color:var(--text);cursor:pointer;font-size:1rem;line-height:1;display:grid;place-items:center}
+.tgl:hover{border-color:var(--primary)}
+[data-icon-dark]{display:none}
+.burger{display:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface);cursor:pointer;padding:9px 8px;flex-direction:column;justify-content:space-between}
+.burger span{display:block;height:2px;background:var(--text);border-radius:2px}
+
+/* 히어로 */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.hero-copy{max-width:62ch}
+.hero-copy.center{margin-inline:auto;text-align:center}
+.hero-copy.center .ctarow{justify-content:center}
+.shot{border-radius:var(--r-card);box-shadow:var(--shadow);border:1px solid var(--border);width:100%}
+
+/* 좌우 분할 */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.split.flip .split-copy{order:2}
+.split-copy{max-width:56ch}
+
+/* 카드 */
+.cards,.stats,.plans,.logos{list-style:none;margin:0;padding:0;display:grid;gap:1.15rem}
+.cols-1{grid-template-columns:1fr}
+.cols-2{grid-template-columns:repeat(2,1fr)}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:1.7rem;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card p{color:var(--text-muted);font-size:.97rem;margin:0}
+.card h3{margin:0 0 .45rem}
+.card-icon{font-size:1.9rem;line-height:1;display:block;margin-bottom:.9rem}
+.card-img{border-radius:calc(var(--r-card) - 6px);margin-bottom:1rem}
+.card-problem{background:var(--surface-alt)}
+.steps .card{padding-top:1.5rem}
+.step-n{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:var(--primary-soft);color:var(--primary);font-weight:800;font-size:.95rem;margin-bottom:.9rem}
+
+/* 숫자 */
+.stats{gap:1rem;text-align:center}
+.stats li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:1.6rem 1rem}
+.stat-v{display:block;font-family:var(--font-display);font-size:clamp(1.8rem,3.4vw,2.5rem);
+  font-weight:800;color:var(--primary);letter-spacing:-.03em;line-height:1.1}
+.stat-l{display:block;font-size:.9rem;color:var(--text-muted);margin-top:.4rem}
+
+/* 로고 */
+.logos-title{text-align:center;color:var(--text-muted);font-size:.88rem;font-weight:600;
+  letter-spacing:.05em;margin:0 0 1.5rem}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem 2.5rem}
+.logos li{opacity:.72}
+.logos img{max-height:32px;width:auto}
+.logos span{font-weight:700;font-size:1.05rem;color:var(--text-muted)}
+
+/* 팀 */
+.team .member{text-align:center;display:flex;flex-direction:column;align-items:center}
+.face{width:88px;height:88px;border-radius:50%;object-fit:cover;margin-bottom:1rem;
+  border:2px solid var(--border);background:var(--surface-alt)}
+.face-txt{display:grid;place-items:center;font-family:var(--font-display);font-size:2rem;
+  font-weight:800;color:var(--primary);background:var(--primary-soft);border-color:transparent}
+.member h3{margin:0 0 .2rem}
+.member-role{font-size:.9rem;font-weight:600;color:var(--primary);margin:0 0 .6rem}
+.member-bio{font-size:.94rem;color:var(--text-muted);margin:0}
+.member-link{margin-top:.8rem;font-size:.88rem;font-weight:600}
+
+/* 영상 */
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--r-card);overflow:hidden;
+  border:1px solid var(--border);box-shadow:var(--shadow);background:#000}
+.video iframe,.video video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+
+/* 후기 */
+.quote{margin:0}
+.quote blockquote{margin:0 0 1.1rem;font-size:1.02rem;line-height:1.75}
+.quote blockquote::before{content:"“";font-size:2.4rem;line-height:0;color:var(--primary);
+  vertical-align:-.35em;margin-right:.1em}
+.quote figcaption{display:flex;flex-direction:column;font-size:.9rem}
+.quote figcaption span{color:var(--text-muted)}
+
+/* 가격 */
+.plans{align-items:start}
+.plan{position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-card);padding:1.9rem;display:flex;flex-direction:column}
+.plan.featured{border-color:var(--primary);border-width:2px;box-shadow:var(--shadow)}
+.plan-tag{position:absolute;top:-12px;left:1.9rem;background:var(--primary);color:var(--on-primary);
+  font-size:.75rem;font-weight:700;padding:.25em .8em;border-radius:99px}
+.price{font-family:var(--font-display);font-size:2.1rem;font-weight:800;margin:.2rem 0 .6rem;letter-spacing:-.03em}
+.price .per{font-size:.95rem;font-weight:600;color:var(--text-muted);margin-left:.15em}
+.plan-desc{color:var(--text-muted);font-size:.95rem}
+.plan-feats{list-style:none;margin:1.1rem 0 0;padding:0;display:grid;gap:.55rem;font-size:.95rem}
+.plan-feats li{padding-left:1.5rem;position:relative;color:var(--text-muted)}
+.plan-feats li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:800}
+.plan .btn{margin-top:auto}
+
+/* FAQ */
+.faq{max-width:760px;margin-inline:auto;border-top:1px solid var(--border)}
+.faq details{border-bottom:1px solid var(--border)}
+.faq summary{cursor:pointer;list-style:none;padding:1.15rem .5rem;font-weight:700;
+  display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--primary);flex:0 0 auto;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:hover{color:var(--primary)}
+.faq-a{padding:0 .5rem 1.3rem;color:var(--text-muted);font-size:.97rem}
+
+/* 최종 CTA */
+.cta-box{max-width:64ch;margin-inline:auto}
+
+/* 폼 */
+.lform{max-width:520px;margin-inline:auto;display:grid;gap:1rem}
+.fld{display:grid;gap:.4rem;font-size:.92rem;font-weight:600}
+.fld input,.fld select,.fld textarea{font:inherit;font-weight:400;padding:.75em .9em;
+  border:1px solid var(--border);border-radius:var(--r-btn);background:var(--surface);
+  color:var(--text);width:100%}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--primary);outline:none;
+  box-shadow:0 0 0 3px var(--ring)}
+.fld.check{grid-template-columns:auto 1fr;align-items:start;gap:.6rem;font-weight:400;font-size:.9rem}
+.fld.check input{width:auto;margin-top:.35em}
+.req{color:var(--primary)}
+.form-msg{font-size:.9rem;margin:.4rem 0 0;padding:.7em 1em;border-radius:var(--r-btn);
+  background:var(--primary-soft);color:var(--primary)}
+
+/* 푸터 */
+.foot{background:var(--bg-alt);border-top:1px solid var(--border);padding:3rem 0 1.5rem;
+  font-size:.92rem;color:var(--text-muted)}
+.foot-in{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between}
+.foot-brand{font-weight:800;color:var(--text);font-size:1.05rem;margin:0 0 .5rem}
+.foot-contact{margin:.6rem 0 0}
+.foot-links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:flex-start}
+.foot-links a{color:var(--text-muted);font-weight:600}
+.foot-legal{border-top:1px solid var(--border);margin-top:2rem;padding-top:1.2rem;font-size:.82rem;opacity:.75}
+
+/* 등장 애니메이션 */
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+[data-reveal].in{opacity:1;transform:none}
+
+/* 반응형 */
+@media (max-width:900px){
+  .cols-3,.cols-4{grid-template-columns:repeat(2,1fr)}
+  .hero-split,.split{grid-template-columns:1fr}
+  .split.flip .split-copy{order:0}
+  .hero-copy,.split-copy{max-width:none}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .nav-links{position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--surface);border-bottom:1px solid var(--border);padding:.6rem 1.25rem 1rem;
+    display:none;box-shadow:var(--shadow)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.7rem .4rem}
+  .burger{display:flex}
+  .cols-2,.cols-3,.cols-4{grid-template-columns:1fr}
+  .stats,.team{grid-template-columns:repeat(2,1fr)}
+  .team .card{padding:1.3rem .9rem}
+  .face{width:68px;height:68px}
+  .foot-in{flex-direction:column;gap:1.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  [data-reveal]{opacity:1;transform:none}
+}
+@media print{.nav,.tgl,.burger{display:none}.sec{padding:1.5rem 0;break-inside:avoid}
+  [data-reveal]{opacity:1!important;transform:none!important}}
+</style>
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<header class="nav" id="top"><div class="wrap nav-in"><a class="brand" href="#top"><span>모두의 팀빌딩</span></a><nav class="nav-links" data-menu-panel><a href="#problem">문제</a><a href="#steps">이용 방법</a><a href="#features">기능</a><a href="#faq">FAQ</a><a href="#signup">신청</a></nav><div class="nav-act"><button class="tgl" type="button" data-theme-toggle aria-label="밝게/어둡게 전환"><span data-icon-light>☀</span><span data-icon-dark>☾</span></button><a class="btn btn-primary btn-sm" href="#signup">무료로 팀 찾기</a><button class="burger" type="button" data-menu aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button></div></div></header><section id="hero" class="sec sec-hero bg-hero" data-reveal><div class="wrap"><div class="hero-copy center"><p class="eyebrow">해커톤 참가자를 위한</p><h1>팀원 구하다가 대회가 끝납니다</h1><p class="lead">오픈채팅방 8개를 뒤지는 대신, 기술 스택과 참여 가능 시간만 입력하세요. 조건이 맞는 팀을 10분 안에 보여드립니다.</p><div class="ctarow"><a class="btn btn-primary" href="#signup">무료로 팀 찾기</a><a class="btn btn-secondary" href="#steps">어떻게 되는지 보기</a></div><p class="note">가입 없이 둘러볼 수 있습니다</p></div></div></section><section id="stats" class="sec sec-stats bg-alt" data-reveal><div class="wrap"><ul class="stats cols-3"><li><span class="stat-v">10분</span><span class="stat-l">평균 매칭 소요 시간</span></li><li><span class="stat-v">4개</span><span class="stat-l">베타 참여 해커톤</span></li><li><span class="stat-v">300명</span><span class="stat-l">2026년 이용자 목표</span></li></ul></div></section><section id="problem" class="sec sec-problem bg-base" data-reveal><div class="wrap"><div class="sechead center"><p class="eyebrow">왜 필요한가</p><h2>해커톤 첫날은 늘 이렇게 흘러갑니다</h2></div><ul class="cards cols-3"><li class="card card-problem"><span class="card-icon" aria-hidden="true">💬</span><h3>오픈채팅방이 8개</h3><p>어디에 누가 남았는지 아무도 모릅니다. 같은 자기소개를 여덟 번 복붙합니다.</p></li><li class="card card-problem"><span class="card-icon" aria-hidden="true">🧩</span><h3>스택이 안 맞음</h3><p>겨우 팀을 짰더니 프론트만 넷입니다. 백엔드를 다시 구합니다.</p></li><li class="card card-problem"><span class="card-icon" aria-hidden="true">⏳</span><h3>시간이 안 맞음</h3><p>밤새 가능한 사람과 저녁만 되는 사람이 섞여 첫 회의부터 어긋납니다.</p></li></ul></div></section><section id="steps" class="sec sec-steps bg-alt" data-reveal><div class="wrap"><div class="sechead center"><h2>세 단계면 끝납니다</h2></div><ul class="cards steps cols-3"><li class="card"><span class="step-n">1</span><h3>프로필 3줄 작성</h3><p>잘 다루는 스택, 참여 가능한 시간대, 하고 싶은 역할만 적습니다.</p></li><li class="card"><span class="step-n">2</span><h3>맞는 팀 확인</h3><p>스택과 시간대가 겹치는 순서로 정렬된 팀 목록을 받습니다.</p></li><li class="card"><span class="step-n">3</span><h3>바로 대화 시작</h3><p>관심 버튼을 누르면 팀장에게 알림이 갑니다. 서로 수락하면 채팅방이 열립니다.</p></li></ul></div></section><section id="features" class="sec sec-features bg-base" data-reveal><div class="wrap"><div class="sechead center"><h2>매칭만 하고 끝나지 않습니다</h2><p class="lead">팀이 굴러가기 시작할 때까지 필요한 것만 넣었습니다.</p></div><ul class="cards cols-3"><li class="card"><span class="card-icon" aria-hidden="true">🎯</span><h3>스택 기반 정렬</h3><p>부족한 역할이 있는 팀을 위로 올려 보여줍니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">📅</span><h3>시간대 겹침 표시</h3><p>서로 몇 시간이나 겹치는지 숫자로 보여줍니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">🔒</span><h3>연락처는 나중에</h3><p>양쪽이 수락하기 전까지 개인 연락처를 공개하지 않습니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">📋</span><h3>역할 체크리스트</h3><p>팀이 짜이면 첫 회의에서 정할 것들을 자동으로 띄웁니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">🔔</span><h3>마감 알림</h3><p>대회 제출 마감 24시간 전에 팀 전원에게 알립니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">🌐</span><h3>설치 없이 웹에서</h3><p>링크만 열면 됩니다. 앱을 받을 필요가 없습니다.</p></li></ul></div></section><section id="faq" class="sec sec-faq bg-alt" data-reveal><div class="wrap"><div class="sechead center"><h2>이런 게 궁금하실 겁니다</h2></div><div class="faq"><details><summary>오픈채팅방이랑 뭐가 다른가요?</summary><div class="faq-a"><p>채팅방은 사람을 모으고 끝이지만, 여기서는 <strong>부족한 역할</strong>을 기준으로 팀을 정렬해서 보여줍니다. 프론트만 넷인 팀이 상단에 뜨지 않습니다.</p></div></details><details><summary>제 연락처가 공개되나요?</summary><div class="faq-a"><p>아니요. 양쪽이 서로 수락하기 전까지는 닉네임과 스택 정보만 보입니다. 수락 후에도 앱 안 채팅으로만 대화합니다.</p></div></details><details><summary>돈을 내야 하나요?</summary><div class="faq-a"><p>개인 참가자는 무료입니다. 대회 주최 측이 참가자 전체 매칭을 의뢰할 때만 유료입니다.</p></div></details><details><summary>혼자인데 팀에 낄 수 있나요?</summary><div class="faq-a"><p>그게 주 용도입니다. 팀이 없는 상태로 프로필만 올리면 사람이 필요한 팀 쪽에서 먼저 연락이 옵니다.</p></div></details></div></div></section><section id="signup" class="sec sec-form bg-base" data-reveal><div class="wrap"><div class="sechead center"><h2>베타 참여 신청</h2><p class="lead">다음 해커톤 일정에 맞춰 순서대로 초대장을 보내드립니다.</p></div><form class="lform" data-noaction="1"><label class="fld"><span>이름 또는 닉네임 <span class="req">*</span></span><input type="text" id="f-name" name="name" placeholder="홍길동" required></label><label class="fld"><span>이메일 <span class="req">*</span></span><input type="email" id="f-email" name="email" placeholder="you@example.com" required></label><label class="fld"><span>주력 스택</span><select id="f-stack" name="stack"><option value="">선택하세요</option><option>프론트엔드</option><option>백엔드</option><option>기획/PM</option><option>디자인</option><option>데이터/AI</option></select></label><label class="fld check"><input type="checkbox" id="f-agree" name="agree" required><span>베타 안내 메일 수신에 동의합니다 <span class="req">*</span></span></label><button class="btn btn-primary btn-block" type="submit">베타 신청하기</button><p class="note">수집한 이메일은 베타 초대 발송에만 쓰고 서비스 출시 후 3개월 내 폐기합니다.</p><p class="form-msg" hidden></p></form></div></section><section id="cta" class="sec sec-cta bg-primary" data-reveal><div class="wrap"><div class="cta-box center"><h2>다음 해커톤은 팀 걱정 없이</h2><p class="lead">첫날 오후를 코드 짜는 데 쓰세요.</p><div class="ctarow center"><a class="btn btn-primary" href="#signup">베타 신청하기</a></div><p class="note">1분이면 끝납니다</p></div></div></section><footer class="foot"><div class="wrap foot-in"><div><p class="foot-brand">모두의 팀빌딩</p><p class="foot-contact"><a href="mailto:hello@teamup.example">hello@teamup.example</a></p></div><nav class="foot-links"><a href="#">개인정보 처리방침</a><a href="#">이용약관</a><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></nav></div><div class="wrap foot-legal">© 모두의 팀빌딩. All rights reserved.</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('[data-menu]'),p=document.querySelector('[data-menu-panel]');
+  if(b&&p){b.addEventListener('click',function(){
+    var o=p.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});
+    p.addEventListener('click',function(e){if(e.target.tagName==='A'){p.classList.remove('open');
+      b.setAttribute('aria-expanded','false');}});}
+
+  var t=document.querySelector('[data-theme-toggle]');
+  function paint(m){document.documentElement.setAttribute('data-theme',m);
+    var l=document.querySelector('[data-icon-light]'),d=document.querySelector('[data-icon-dark]');
+    if(l&&d){l.style.display=m==='dark'?'none':'';d.style.display=m==='dark'?'':'none';}}
+  if(t){
+    var saved=null;try{saved=localStorage.getItem('lp-theme');}catch(e){}
+    var sys=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+    paint(saved||sys);
+    t.addEventListener('click',function(){
+      var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+      paint(n);try{localStorage.setItem('lp-theme',n);}catch(e){}});
+  }
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+      {rootMargin:'0px 0px -8% 0px',threshold:.05});
+    document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
+  }else{document.querySelectorAll('[data-reveal]').forEach(function(el){el.classList.add('in');});}
+
+  function revealAll(){document.querySelectorAll('[data-reveal]').forEach(function(el){el.classList.add('in');});}
+  window.addEventListener('beforeprint',revealAll);
+  if(window.matchMedia){var mq=window.matchMedia('print');
+    if(mq.addEventListener)mq.addEventListener('change',function(e){if(e.matches)revealAll();});}
+
+  var f=document.querySelector('form[data-noaction]');
+  if(f){f.addEventListener('submit',function(e){e.preventDefault();
+    var m=f.querySelector('.form-msg');
+    if(m){m.hidden=false;m.textContent='폼 전송이 아직 연결되지 않았습니다. landing.json 의 form 섹션에 action 값을 넣어주세요.';}});}
+})();
+</script>
+</body>
+</html>

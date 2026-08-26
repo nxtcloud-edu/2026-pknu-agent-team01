@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "RunFunMan — 러닝이 게임이 됩니다",
+    "description": "평소 듣던 플레이리스트로 달리면 페이스와 랜덤 이벤트에 맞춰 음악과 나레이션이 바뀝니다. 국가대표 모드로 오늘 러닝의 주인공이 되세요.",
+    "slug": "RunFunMan",
+    "lang": "ko",
+    "favicon": "🏃"
+  },
+  "theme": "forest",
+  "options": { "darkMode": "auto", "radius": "soft", "density": "normal", "animate": true },
+  "brand": {
+    "name": "RunFunMan",
+    "socials": [{ "label": "GitHub", "url": "https://github.com" }]
+  },
+  "sections": [
+    {
+      "type": "nav",
+      "primaryCta": { "label": "미리듣기 체험하기", "href": "#preview" }
+    },
+    {
+      "type": "hero",
+      "eyebrow": "엔터테인먼트형 러닝 앱",
+      "heading": "오늘 러닝의 주인공은 당신입니다",
+      "subheading": "평소 듣던 플레이리스트로 달리기만 하세요. 페이스와 거리, 랜덤 이벤트에 맞춰 음악과 나레이션이 실시간으로 바뀝니다.",
+      "primaryCta": { "label": "미리듣기 체험하기", "href": "#preview" },
+      "secondaryCta": { "label": "어떻게 동작하는지 보기", "href": "#steps", "style": "secondary" },
+      "note": "설치 없이 아래에서 바로 체험할 수 있습니다",
+      "background": "hero"
+    },
+    {
+      "type": "problem",
+      "id": "problem",
+      "navLabel": "문제",
+      "eyebrow": "왜 만들었나",
+      "heading": "러닝은 3일이면 지루해집니다",
+      "body": "달리기가 몸에 좋다는 건 다들 압니다. 문제는 재미가 없어서 꾸준히 못 한다는 겁니다.",
+      "background": "base",
+      "items": [
+        { "icon": "🔁", "title": "매번 똑같은 코스, 똑같은 노래", "body": "같은 길을 같은 재생목록으로 도는 30분. 3일이면 나가기 싫어집니다." },
+        { "icon": "😶", "title": "혼자 달리면 지치기만 함", "body": "옆에서 밀어주는 사람이 없으니 페이스가 떨어져도 그냥 걷게 됩니다." },
+        { "icon": "📉", "title": "기록만 남고 이야기는 없음", "body": "앱은 거리와 페이스 숫자만 보여줍니다. 오늘 러닝이 어땠는지는 안 남습니다." }
+      ]
+    },
+    {
+      "type": "steps",
+      "id": "steps",
+      "navLabel": "동작 방식",
+      "heading": "세 가지만 하면 됩니다",
+      "background": "alt",
+      "items": [
+        { "title": "플레이리스트와 모드를 고른다", "body": "평소 듣던 재생목록을 연결하고, 기본·마라톤·인터벌·국가대표 중 오늘의 모드를 고릅니다." },
+        { "title": "그냥 달린다", "body": "GPS가 시간·거리·페이스를 계산합니다. 5분마다, 1km마다 상황에 맞는 나레이션이 나옵니다." },
+        { "title": "이벤트가 러닝을 흔든다", "body": "라이벌이 쫓아오면 빠른 곡으로, 이상형이 나타나면 사랑 노래로. 음악과 목소리가 상황을 따라 바뀝니다." }
+      ]
+    },
+    {
+      "type": "features",
+      "id": "features",
+      "navLabel": "기능",
+      "heading": "달리는 내내 무슨 일이 벌어집니다",
+      "subheading": "센서 계산은 정확하게, 연출은 과감하게. 재미에 필요한 것만 넣었습니다.",
+      "background": "base",
+      "items": [
+        { "icon": "🎽", "title": "4개의 러닝 모드", "body": "기본·마라톤·인터벌·국가대표. 모드마다 나레이션 톤과 음악 전환 규칙이 다릅니다." },
+        { "icon": "🎲", "title": "예측 불가 랜덤 이벤트", "body": "이상형 등장, 라이벌 추격, 페이스 하락 위기. 쿨다운으로 겹치지 않게 터집니다." },
+        { "icon": "🎧", "title": "상황 반응형 음악", "body": "빨라져야 할 땐 high-energy, 회복 구간엔 recovery. 현재 곡을 끊지 않고 다음 곡부터 반영합니다." },
+        { "icon": "📣", "title": "국가대표 중계 모드", "body": "스포츠 중계 스타일 나레이션과 고스트 러너로 경기의 주인공이 됩니다." },
+        { "icon": "🗣️", "title": "사전 제작 TTS 가이드", "body": "\"5분째 달리고 있습니다\" 같은 안내를 음악 볼륨을 낮췄다 복구하며 재생합니다." },
+        { "icon": "📊", "title": "러닝 스토리 리포트", "body": "거리·페이스뿐 아니라 발생한 이벤트와 미션 결과까지 이야기로 남깁니다." }
+      ]
+    },
+    {
+      "type": "showcase",
+      "id": "preview",
+      "navLabel": "미리듣기",
+      "heading": "지금 바로 러닝 한 장면을 돌려보세요",
+      "body": "모드를 고르고 버튼을 누르면 실제 러닝처럼 랜덤 이벤트가 발생합니다. 어떤 나레이션이 나오고 음악이 어떻게 바뀌는지 미리 확인해보세요.\n\n앱 없이 이 페이지에서 그대로 체험할 수 있습니다.",
+      "background": "alt",
+      "primaryCta": { "label": "미리듣기 체험하기", "href": "#preview" }
+    },
+    {
+      "type": "cta",
+      "heading": "다음 러닝은 지루하지 않게",
+      "subheading": "달리기가 게임이 되는 순간을 위에서 직접 눌러보세요.",
+      "background": "primary",
+      "primaryCta": { "label": "미리듣기 체험하기", "href": "#preview" },
+      "note": "몇 초면 됩니다"
+    },
+    {
+      "type": "footer",
+      "body": "부경대학교 AI Agent 1팀이 만들고 있습니다.",
+      "items": [
+        { "label": "GitHub", "url": "https://github.com" }
+      ]
+    }
+  ]
+}

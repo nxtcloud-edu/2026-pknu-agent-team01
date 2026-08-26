@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "howToUse": "landing.json 의 theme 필드에 아래 id 중 하나를 넣으세요. build.py 가 CSS 변수로 바꿔 넣습니다. 나중에 색을 바꾸고 싶으면 theme 값만 교체하거나, landing.json 의 themeOverrides 로 개별 색만 덮어쓰면 됩니다.",
+  "themes": [
+    {
+      "id": "midnight",
+      "name": "미드나이트 블루",
+      "mood": "신뢰 · 전문성 · 안정감",
+      "bestFor": ["B2B 서비스", "금융/보안", "클라우드·인프라", "기업 대상 솔루션"],
+      "avoidFor": ["아동/유아", "푸드", "감성 리테일"],
+      "swatch": ["#0d1b2a", "#1b4fd8", "#2fd6c3", "#f7f9fc"],
+      "font": {
+        "sans": "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        "display": "'Pretendard Variable', Pretendard, -apple-system, sans-serif"
+      },
+      "tokens": {
+        "bg": "#f7f9fc", "bg-alt": "#eef2f8", "surface": "#ffffff", "surface-alt": "#f2f5fa",
+        "border": "#dbe3ee", "text": "#0d1b2a", "text-muted": "#516079",
+        "primary": "#1b4fd8", "primary-hover": "#153fb0", "primary-soft": "#e5edff", "on-primary": "#ffffff",
+        "accent": "#2fd6c3", "accent-soft": "#dbfaf5", "ring": "rgba(27,79,216,0.35)",
+        "hero-bg": "linear-gradient(160deg,#0d1b2a 0%,#14315e 55%,#1b4fd8 100%)",
+        "hero-text": "#ffffff", "hero-text-muted": "#b9c8e0",
+        "shadow": "0 18px 44px -22px rgba(13,27,42,0.45)"
+      },
+      "dark": {
+        "bg": "#080d16", "bg-alt": "#0d1521", "surface": "#111b2b", "surface-alt": "#162235",
+        "border": "#22314a", "text": "#e8eefb", "text-muted": "#93a4c0",
+        "primary": "#5b8cff", "primary-hover": "#7ba3ff", "primary-soft": "#16233c", "on-primary": "#06101f",
+        "accent": "#2fd6c3", "accent-soft": "#0f2b2a", "ring": "rgba(91,140,255,0.4)",
+        "hero-bg": "linear-gradient(160deg,#06101f 0%,#0f2646 55%,#1b3f8f 100%)",
+        "hero-text": "#ffffff", "hero-text-muted": "#a8bcdd",
+        "shadow": "0 18px 44px -22px rgba(0,0,0,0.75)"
+      }
+    },
+    {
+      "id": "sand",
+      "name": "웜 샌드",
+      "mood": "따뜻함 · 사람 중심 · 편안함",
+      "bestFor": ["교육/부트캠프", "커뮤니티", "리테일·브랜드", "로컬 비즈니스"],
+      "avoidFor": ["보안/딥테크", "고대비 데이터 대시보드"],
+      "swatch": ["#2b211a", "#c2562c", "#1f6f5c", "#fdf9f4"],
+      "font": {
+        "sans": "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        "display": "'Pretendard Variable', Pretendard, -apple-system, sans-serif"
+      },
+      "tokens": {
+        "bg": "#fdf9f4", "bg-alt": "#f6efe5", "surface": "#ffffff", "surface-alt": "#faf4ec",
+        "border": "#e8dcca", "text": "#2b211a", "text-muted": "#6d5c4d",
+        "primary": "#c2562c", "primary-hover": "#a34521", "primary-soft": "#fbe9df", "on-primary": "#ffffff",
+        "accent": "#1f6f5c", "accent-soft": "#dff0ea", "ring": "rgba(194,86,44,0.32)",
+        "hero-bg": "linear-gradient(160deg,#fdf3e7 0%,#f7e3cf 60%,#f0d2b4 100%)",
+        "hero-text": "#2b211a", "hero-text-muted": "#6d5c4d",
+        "shadow": "0 18px 44px -22px rgba(74,52,34,0.32)"
+      },
+      "dark": {
+        "bg": "#17120e", "bg-alt": "#1f1813", "surface": "#221a14", "surface-alt": "#2a2019",
+        "border": "#3a2c22", "text": "#f5ece1", "text-muted": "#b8ac96",
+        "primary": "#e87c4d", "primary-hover": "#f0946a", "primary-soft": "#332117", "on-primary": "#1b120c",
+        "accent": "#4fc0a4", "accent-soft": "#122b25", "ring": "rgba(232,124,77,0.38)",
+        "hero-bg": "linear-gradient(160deg,#1b1410 0%,#2d2017 60%,#43291b 100%)",
+        "hero-text": "#f7efe4", "hero-text-muted": "#c2ac96",
+        "shadow": "0 18px 44px -22px rgba(0,0,0,0.7)"
+      }
+    },
+    {
+      "id": "forest",
+      "name": "포레스트 민트",
+      "mood": "성장 · 건강 · 지속가능",
+      "bestFor": ["헬스케어/웰니스", "친환경·ESG", "생산성 도구", "생활 습관 앱"],
+      "avoidFor": ["럭셔리 명품", "나이트라이프"],
+      "swatch": ["#0f2119", "#12795a", "#f2a541", "#f5faf7"],
+      "font": {
+        "sans": "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif",
+        "display": "'Pretendard Variable', Pretendard, -apple-system, sans-serif"
+      },
+      "tokens": {
+        "bg": "#f5faf7", "bg-alt": "#e9f4ee", "surface": "#ffffff", "surface-alt": "#f1f8f4",
+        "border": "#d3e6db", "text": "#0f2119", "text-muted": "#4c6459",
+        "primary": "#12795a", "primary-hover": "#0d5f47", "primary-soft": "#dcf2e8", "on-primary": "#ffffff",
+        "accent": "#f2a541", "accent-soft": "#fdf0da", "ring": "rgba(18,121,90,0.32)",
+        "hero-bg": "linear-gradient(160deg,#0f2119 0%,#12795a 70%,#3ec18f 100%)",
+        "hero-text": "#ffffff", "hero-text-muted": "#bde0d0",
+        "shadow": "0 18px 44px -22px rgba(15,33,25,0.4)"
+      },
+      "dark": {
+        "bg": "#07120d", "bg-alt": "#0c1a14", "surface": "#0f2118", "surface-alt": "#132a20",
+        "border": "#1f3a2d", "text": "#e6f4ec", "text-muted": "#8fae9f",
+        "primary": "#3ec18f", "primary-hover": "#5ad3a4", "primary-soft": "#103528", "on-primary": "#04140d",
+        "accent": "#f2a541", "accent-soft": "#2e2312", "ring": "rgba(62,193,143,0.38)",
+        "hero-bg": "linear-gradient(160deg,#04140d 0%,#0d3d2c 65%,#12795a 100%)",
+        "hero-text": "#ffffff", "hero-text-muted": "#a7cfbc",
+        "shadow": "0 18px 44px -22px rgba(0,0,0,0.7)"
+      }
+    },
+    {
+      "id": "violet",
+      "name": "모노 바이올렛",
+      "mood": "모던 · 첨단 · 크리에이티브",
+      "bestFor": ["AI·데이터 제품", "개발자 도구", "스타트업 신규 출시", "디자인/크리에이티브"],
+      "avoidFor": ["공공기관", "보수적인 금융"],
+      "swatch": ["#131318", "#6d3bf5", "#ff5c8a", "#fafafb"],
+      "font": {
+        "sans": "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif",
+        "display": "'Pretendard Variable', Pretendard, -apple-system, sans-serif"
+      },
+      "tokens": {
+        "bg": "#fafafb", "bg-alt": "#f2f2f5", "surface": "#ffffff", "surface-alt": "#f7f7fa",
+        "border": "#e3e3e9", "text": "#131318", "text-muted": "#5e5e6b",
+        "primary": "#6d3bf5", "primary-hover": "#5a2ad6", "primary-soft": "#eee7ff", "on-primary": "#ffffff",
+        "accent": "#ff5c8a", "accent-soft": "#ffe4ec", "ring": "rgba(109,59,245,0.35)",
+        "hero-bg": "linear-gradient(160deg,#131318 0%,#2c1a5e 55%,#6d3bf5 100%)",
+        "hero-text": "#ffffff", "hero-text-muted": "#c5bcdf",
+        "shadow": "0 18px 44px -22px rgba(19,19,24,0.42)"
+      },
+      "dark": {
+        "bg": "#08080b", "bg-alt": "#0e0e13", "surface": "#131319", "surface-alt": "#1a1a22",
+        "border": "#26262f", "text": "#eeeef4", "text-muted": "#9a9aab",
+        "primary": "#9b7bff", "primary-hover": "#b199ff", "primary-soft": "#1c1730", "on-primary": "#0a0714",
+        "accent": "#ff5c8a", "accent-soft": "#2e1420", "ring": "rgba(155,123,255,0.4)",
+        "hero-bg": "linear-gradient(160deg,#0a0714 0%,#241553 55%,#5a2ad6 100%)",
+        "hero-text": "#ffffff", "hero-text-muted": "#b8aade",
+        "shadow": "0 18px 44px -22px rgba(0,0,0,0.75)"
+      }
+    }
+  ]
+}

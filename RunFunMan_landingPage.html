@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RunFunMan — 러닝이 게임이 됩니다</title>
+<meta name="description" content="평소 듣던 플레이리스트로 달리면 페이스와 랜덤 이벤트에 맞춰 음악과 나레이션이 바뀝니다. 국가대표 모드로 오늘 러닝의 주인공이 되세요.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🏃%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="RunFunMan — 러닝이 게임이 됩니다"><meta property="og:description" content="평소 듣던 플레이리스트로 달리면 페이스와 랜덤 이벤트에 맞춰 음악과 나레이션이 바뀝니다. 국가대표 모드로 오늘 러닝의 주인공이 되세요."><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>:root{--bg:#f5faf7;--bg-alt:#e9f4ee;--surface:#ffffff;--surface-alt:#f1f8f4;--border:#d3e6db;--text:#0f2119;--text-muted:#4c6459;--primary:#12795a;--primary-hover:#0d5f47;--primary-soft:#dcf2e8;--on-primary:#ffffff;--accent:#f2a541;--accent-soft:#fdf0da;--ring:rgba(18,121,90,0.32);--hero-bg:linear-gradient(160deg,#0f2119 0%,#12795a 70%,#3ec18f 100%);--hero-text:#ffffff;--hero-text-muted:#bde0d0;--shadow:0 18px 44px -22px rgba(15,33,25,0.4);--font-sans:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;--font-display:'Pretendard Variable', Pretendard, -apple-system, sans-serif;--r-btn:10px;--r-card:16px;--pad:clamp(4rem,8vw,6.5rem);color-scheme:light dark}@media (prefers-color-scheme:dark){:root:not([data-theme='light']){--bg:#07120d;--bg-alt:#0c1a14;--surface:#0f2118;--surface-alt:#132a20;--border:#1f3a2d;--text:#e6f4ec;--text-muted:#8fae9f;--primary:#3ec18f;--primary-hover:#5ad3a4;--primary-soft:#103528;--on-primary:#04140d;--accent:#f2a541;--accent-soft:#2e2312;--ring:rgba(62,193,143,0.38);--hero-bg:linear-gradient(160deg,#04140d 0%,#0d3d2c 65%,#12795a 100%);--hero-text:#ffffff;--hero-text-muted:#a7cfbc;--shadow:0 18px 44px -22px rgba(0,0,0,0.7);}}:root[data-theme='dark']{--bg:#07120d;--bg-alt:#0c1a14;--surface:#0f2118;--surface-alt:#132a20;--border:#1f3a2d;--text:#e6f4ec;--text-muted:#8fae9f;--primary:#3ec18f;--primary-hover:#5ad3a4;--primary-soft:#103528;--on-primary:#04140d;--accent:#f2a541;--accent-soft:#2e2312;--ring:rgba(62,193,143,0.38);--hero-bg:linear-gradient(160deg,#04140d 0%,#0d3d2c 65%,#12795a 100%);--hero-text:#ffffff;--hero-text-muted:#a7cfbc;--shadow:0 18px 44px -22px rgba(0,0,0,0.7);}:root[data-theme='light']{--bg:#f5faf7;--bg-alt:#e9f4ee;--surface:#ffffff;--surface-alt:#f1f8f4;--border:#d3e6db;--text:#0f2119;--text-muted:#4c6459;--primary:#12795a;--primary-hover:#0d5f47;--primary-soft:#dcf2e8;--on-primary:#ffffff;--accent:#f2a541;--accent-soft:#fdf0da;--ring:rgba(18,121,90,0.32);--hero-bg:linear-gradient(160deg,#0f2119 0%,#12795a 70%,#3ec18f 100%);--hero-text:#ffffff;--hero-text-muted:#bde0d0;--shadow:0 18px 44px -22px rgba(15,33,25,0.4);}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);
+  font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  word-break:keep-all;overflow-wrap:break-word}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{font-family:var(--font-display);line-height:1.25;letter-spacing:-.02em;margin:0 0 .5em;
+  text-wrap:balance;font-weight:800;word-break:keep-all}
+h1{font-size:clamp(2rem,5.2vw,3.6rem)}
+h2{font-size:clamp(1.6rem,3.4vw,2.4rem)}
+h3{font-size:1.12rem;font-weight:700}
+p{margin:0 0 1em}
+p:last-child{margin-bottom:0}
+code{background:var(--surface-alt);border:1px solid var(--border);border-radius:6px;
+  padding:.1em .38em;font-size:.88em}
+:focus-visible{outline:3px solid var(--ring);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+.center{text-align:center}
+
+/* 섹션 */
+.sec{padding:var(--pad) 0;position:relative}
+.sec.bg-base{background:var(--bg)}
+.sec.bg-alt{background:var(--bg-alt)}
+.sec.bg-surface{background:var(--surface)}
+.sec.bg-hero{background:var(--hero-bg);color:var(--hero-text)}
+.sec.bg-hero .lead,.sec.bg-hero .eyebrow,.sec.bg-hero .note{color:var(--hero-text-muted)}
+.sec.bg-hero h1,.sec.bg-hero h2{color:var(--hero-text)}
+.sec.bg-primary{background:var(--primary);color:var(--on-primary)}
+.sec.bg-primary h2{color:var(--on-primary)}
+.sec.bg-primary .lead,.sec.bg-primary .note{color:var(--on-primary);opacity:.85}
+.sechead{max-width:62ch;margin:0 0 2.75rem}
+.sechead.center{margin-inline:auto}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--primary);margin:0 0 .7rem}
+.lead{font-size:clamp(1.02rem,1.7vw,1.2rem);color:var(--text-muted);margin:0;text-wrap:pretty}
+.prose{max-width:66ch;color:var(--text-muted)}
+.prose.center{margin-inline:auto}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45em;
+  padding:.82em 1.55em;border-radius:var(--r-btn);font-weight:700;font-size:.98rem;
+  border:1.5px solid transparent;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s;
+  text-decoration:none!important;font-family:inherit;line-height:1.2}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--primary);color:var(--on-primary);box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--primary-hover)}
+.btn-secondary{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.btn-ghost{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.btn-sm{padding:.6em 1.1em;font-size:.9rem}
+.btn-block{display:flex;width:100%;margin-top:1.25rem}
+.bg-hero .btn-secondary,.bg-primary .btn-secondary{background:transparent;color:inherit;border-color:currentColor}
+.bg-primary .btn-primary{background:var(--surface);color:var(--primary)}
+.ctarow{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.ctarow.center{justify-content:center}
+.note{font-size:.85rem;color:var(--text-muted);margin:.9rem 0 0}
+
+/* 헤더 */
+.nav{position:sticky;top:0;z-index:50;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--border)}
+.nav-in{display:flex;align-items:center;gap:1rem;height:64px}
+.brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.05rem;
+  color:var(--text);text-decoration:none!important;flex:0 0 auto}
+.logo-img{height:28px;width:auto}
+.nav-links{display:flex;gap:.35rem;margin-left:auto;flex-wrap:wrap}
+.nav-links a{padding:.45rem .75rem;border-radius:8px;font-size:.94rem;font-weight:600;
+  color:var(--text-muted);text-decoration:none!important}
+.nav-links a:hover{color:var(--text);background:var(--surface-alt)}
+.nav-act{display:flex;align-items:center;gap:.5rem;margin-left:.5rem}
+.tgl{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface);
+  color:var(--text);cursor:pointer;font-size:1rem;line-height:1;display:grid;place-items:center}
+.tgl:hover{border-color:var(--primary)}
+[data-icon-dark]{display:none}
+.burger{display:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface);cursor:pointer;padding:9px 8px;flex-direction:column;justify-content:space-between}
+.burger span{display:block;height:2px;background:var(--text);border-radius:2px}
+
+/* 히어로 */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.hero-copy{max-width:62ch}
+.hero-copy.center{margin-inline:auto;text-align:center}
+.hero-copy.center .ctarow{justify-content:center}
+.shot{border-radius:var(--r-card);box-shadow:var(--shadow);border:1px solid var(--border);width:100%}
+
+/* 좌우 분할 */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.split.flip .split-copy{order:2}
+.split-copy{max-width:56ch}
+
+/* 카드 */
+.cards,.stats,.plans,.logos{list-style:none;margin:0;padding:0;display:grid;gap:1.15rem}
+.cols-1{grid-template-columns:1fr}
+.cols-2{grid-template-columns:repeat(2,1fr)}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:1.7rem;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card p{color:var(--text-muted);font-size:.97rem;margin:0}
+.card h3{margin:0 0 .45rem}
+.card-icon{font-size:1.9rem;line-height:1;display:block;margin-bottom:.9rem}
+.card-img{border-radius:calc(var(--r-card) - 6px);margin-bottom:1rem}
+.card-problem{background:var(--surface-alt)}
+.steps .card{padding-top:1.5rem}
+.step-n{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:var(--primary-soft);color:var(--primary);font-weight:800;font-size:.95rem;margin-bottom:.9rem}
+
+/* 숫자 */
+.stats{gap:1rem;text-align:center}
+.stats li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:1.6rem 1rem}
+.stat-v{display:block;font-family:var(--font-display);font-size:clamp(1.8rem,3.4vw,2.5rem);
+  font-weight:800;color:var(--primary);letter-spacing:-.03em;line-height:1.1}
+.stat-l{display:block;font-size:.9rem;color:var(--text-muted);margin-top:.4rem}
+
+/* 로고 */
+.logos-title{text-align:center;color:var(--text-muted);font-size:.88rem;font-weight:600;
+  letter-spacing:.05em;margin:0 0 1.5rem}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem 2.5rem}
+.logos li{opacity:.72}
+.logos img{max-height:32px;width:auto}
+.logos span{font-weight:700;font-size:1.05rem;color:var(--text-muted)}
+
+/* 팀 */
+.team .member{text-align:center;display:flex;flex-direction:column;align-items:center}
+.face{width:88px;height:88px;border-radius:50%;object-fit:cover;margin-bottom:1rem;
+  border:2px solid var(--border);background:var(--surface-alt)}
+.face-txt{display:grid;place-items:center;font-family:var(--font-display);font-size:2rem;
+  font-weight:800;color:var(--primary);background:var(--primary-soft);border-color:transparent}
+.member h3{margin:0 0 .2rem}
+.member-role{font-size:.9rem;font-weight:600;color:var(--primary);margin:0 0 .6rem}
+.member-bio{font-size:.94rem;color:var(--text-muted);margin:0}
+.member-link{margin-top:.8rem;font-size:.88rem;font-weight:600}
+
+/* 영상 */
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--r-card);overflow:hidden;
+  border:1px solid var(--border);box-shadow:var(--shadow);background:#000}
+.video iframe,.video video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+
+/* 후기 */
+.quote{margin:0}
+.quote blockquote{margin:0 0 1.1rem;font-size:1.02rem;line-height:1.75}
+.quote blockquote::before{content:"“";font-size:2.4rem;line-height:0;color:var(--primary);
+  vertical-align:-.35em;margin-right:.1em}
+.quote figcaption{display:flex;flex-direction:column;font-size:.9rem}
+.quote figcaption span{color:var(--text-muted)}
+
+/* 가격 */
+.plans{align-items:start}
+.plan{position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-card);padding:1.9rem;display:flex;flex-direction:column}
+.plan.featured{border-color:var(--primary);border-width:2px;box-shadow:var(--shadow)}
+.plan-tag{position:absolute;top:-12px;left:1.9rem;background:var(--primary);color:var(--on-primary);
+  font-size:.75rem;font-weight:700;padding:.25em .8em;border-radius:99px}
+.price{font-family:var(--font-display);font-size:2.1rem;font-weight:800;margin:.2rem 0 .6rem;letter-spacing:-.03em}
+.price .per{font-size:.95rem;font-weight:600;color:var(--text-muted);margin-left:.15em}
+.plan-desc{color:var(--text-muted);font-size:.95rem}
+.plan-feats{list-style:none;margin:1.1rem 0 0;padding:0;display:grid;gap:.55rem;font-size:.95rem}
+.plan-feats li{padding-left:1.5rem;position:relative;color:var(--text-muted)}
+.plan-feats li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:800}
+.plan .btn{margin-top:auto}
+
+/* FAQ */
+.faq{max-width:760px;margin-inline:auto;border-top:1px solid var(--border)}
+.faq details{border-bottom:1px solid var(--border)}
+.faq summary{cursor:pointer;list-style:none;padding:1.15rem .5rem;font-weight:700;
+  display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--primary);flex:0 0 auto;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:hover{color:var(--primary)}
+.faq-a{padding:0 .5rem 1.3rem;color:var(--text-muted);font-size:.97rem}
+
+/* 최종 CTA */
+.cta-box{max-width:64ch;margin-inline:auto}
+
+/* 폼 */
+.lform{max-width:520px;margin-inline:auto;display:grid;gap:1rem}
+.fld{display:grid;gap:.4rem;font-size:.92rem;font-weight:600}
+.fld input,.fld select,.fld textarea{font:inherit;font-weight:400;padding:.75em .9em;
+  border:1px solid var(--border);border-radius:var(--r-btn);background:var(--surface);
+  color:var(--text);width:100%}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--primary);outline:none;
+  box-shadow:0 0 0 3px var(--ring)}
+.fld.check{grid-template-columns:auto 1fr;align-items:start;gap:.6rem;font-weight:400;font-size:.9rem}
+.fld.check input{width:auto;margin-top:.35em}
+.req{color:var(--primary)}
+.form-msg{font-size:.9rem;margin:.4rem 0 0;padding:.7em 1em;border-radius:var(--r-btn);
+  background:var(--primary-soft);color:var(--primary)}
+
+/* 푸터 */
+.foot{background:var(--bg-alt);border-top:1px solid var(--border);padding:3rem 0 1.5rem;
+  font-size:.92rem;color:var(--text-muted)}
+.foot-in{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between}
+.foot-brand{font-weight:800;color:var(--text);font-size:1.05rem;margin:0 0 .5rem}
+.foot-contact{margin:.6rem 0 0}
+.foot-links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:flex-start}
+.foot-links a{color:var(--text-muted);font-weight:600}
+.foot-legal{border-top:1px solid var(--border);margin-top:2rem;padding-top:1.2rem;font-size:.82rem;opacity:.75}
+
+/* 등장 애니메이션 */
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+[data-reveal].in{opacity:1;transform:none}
+
+/* 반응형 */
+@media (max-width:900px){
+  .cols-3,.cols-4{grid-template-columns:repeat(2,1fr)}
+  .hero-split,.split{grid-template-columns:1fr}
+  .split.flip .split-copy{order:0}
+  .hero-copy,.split-copy{max-width:none}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .nav-links{position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--surface);border-bottom:1px solid var(--border);padding:.6rem 1.25rem 1rem;
+    display:none;box-shadow:var(--shadow)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.7rem .4rem}
+  .burger{display:flex}
+  .cols-2,.cols-3,.cols-4{grid-template-columns:1fr}
+  .stats,.team{grid-template-columns:repeat(2,1fr)}
+  .team .card{padding:1.3rem .9rem}
+  .face{width:68px;height:68px}
+  .foot-in{flex-direction:column;gap:1.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  [data-reveal]{opacity:1;transform:none}
+}
+@media print{.nav,.tgl,.burger{display:none}.sec{padding:1.5rem 0;break-inside:avoid}
+  [data-reveal]{opacity:1!important;transform:none!important}}
+
+/* ── RunFunMan 인터랙티브 미리듣기 위젯 ── */
+.rfm-preview{width:100%}
+.rfm-phone{max-width:360px;margin-inline:auto;background:var(--surface);border:1px solid var(--border);
+  border-radius:calc(var(--r-card) + 8px);padding:1.25rem;box-shadow:var(--shadow);display:flex;
+  flex-direction:column;gap:1rem}
+.rfm-phone-top{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:.95rem;color:var(--text)}
+.rfm-dot{width:9px;height:9px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px var(--primary-soft)}
+.rfm-mode-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem}
+.rfm-mode{font:inherit;font-size:.82rem;font-weight:700;padding:.5em .2em;border-radius:var(--r-btn);
+  border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;
+  transition:all .15s}
+.rfm-mode:hover{border-color:var(--primary);color:var(--primary)}
+.rfm-mode.is-active{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+.rfm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;text-align:center}
+.rfm-stat{background:var(--surface-alt);border-radius:var(--r-btn);padding:.6rem .3rem}
+.rfm-stat-v{display:block;font-family:var(--font-display);font-weight:800;font-size:1.15rem;
+  color:var(--text);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.rfm-stat-l{display:block;font-size:.68rem;color:var(--text-muted);margin-top:.15rem}
+.rfm-screen{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:1rem;min-height:118px;display:flex;flex-direction:column;gap:.6rem}
+.rfm-event-tag{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--primary);background:var(--primary-soft);
+  padding:.28em .7em;border-radius:99px}
+.rfm-narration{margin:0;font-size:.95rem;line-height:1.55;color:var(--text);font-weight:600;flex:1}
+.rfm-music{display:flex;align-items:center;gap:.45rem;font-size:.83rem;color:var(--text-muted);
+  border-top:1px dashed var(--border);padding-top:.55rem}
+.rfm-music-ico{color:var(--accent);font-size:1rem;line-height:1}
+.rfm-music.pulse .rfm-music-ico{animation:rfm-pulse 1s ease-in-out infinite}
+@keyframes rfm-pulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+.rfm-controls{display:flex;gap:.5rem;align-items:stretch}
+.rfm-run{flex:1}
+.rfm-run.is-running{background:var(--surface);color:var(--primary);border-color:var(--primary)}
+.rfm-sound{font:inherit;font-size:.82rem;font-weight:700;padding:.5em .75em;border-radius:var(--r-btn);
+  border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;
+  white-space:nowrap;transition:all .15s}
+.rfm-sound:hover:not(:disabled){border-color:var(--primary);color:var(--primary)}
+.rfm-sound[aria-pressed="true"]{opacity:.7}
+.rfm-sound:disabled{cursor:not-allowed;opacity:.5}
+.rfm-hint{margin:0;font-size:.72rem;color:var(--text-muted);text-align:center;line-height:1.4}
+.rfm-flash{animation:rfm-flash .5s ease}
+@keyframes rfm-flash{0%{background:var(--primary-soft)}100%{background:var(--bg-alt)}}
+@media (prefers-reduced-motion:reduce){.rfm-music.pulse .rfm-music-ico{animation:none}.rfm-flash{animation:none}}
+</style>
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<header class="nav" id="top"><div class="wrap nav-in"><a class="brand" href="#top"><span>RunFunMan</span></a><nav class="nav-links" data-menu-panel><a href="#problem">문제</a><a href="#steps">동작 방식</a><a href="#features">기능</a><a href="#preview">미리듣기</a></nav><div class="nav-act"><button class="tgl" type="button" data-theme-toggle aria-label="밝게/어둡게 전환"><span data-icon-light>☀</span><span data-icon-dark>☾</span></button><a class="btn btn-primary btn-sm" href="#preview">미리듣기 체험하기</a><button class="burger" type="button" data-menu aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button></div></div></header><section id="hero" class="sec sec-hero bg-hero" data-reveal><div class="wrap"><div class="hero-copy center"><p class="eyebrow">엔터테인먼트형 러닝 앱</p><h1>오늘 러닝의 주인공은 당신입니다</h1><p class="lead">평소 듣던 플레이리스트로 달리기만 하세요. 페이스와 거리, 랜덤 이벤트에 맞춰 음악과 나레이션이 실시간으로 바뀝니다.</p><div class="ctarow"><a class="btn btn-primary" href="#preview">미리듣기 체험하기</a><a class="btn btn-secondary" href="#steps">어떻게 동작하는지 보기</a></div><p class="note">설치 없이 아래에서 바로 체험할 수 있습니다</p></div></div></section><section id="problem" class="sec sec-problem bg-base" data-reveal><div class="wrap"><div class="sechead center"><p class="eyebrow">왜 만들었나</p><h2>러닝은 3일이면 지루해집니다</h2></div><div class="prose center"><p>달리기가 몸에 좋다는 건 다들 압니다. 문제는 재미가 없어서 꾸준히 못 한다는 겁니다.</p></div><ul class="cards cols-3"><li class="card card-problem"><span class="card-icon" aria-hidden="true">🔁</span><h3>매번 똑같은 코스, 똑같은 노래</h3><p>같은 길을 같은 재생목록으로 도는 30분. 3일이면 나가기 싫어집니다.</p></li><li class="card card-problem"><span class="card-icon" aria-hidden="true">😶</span><h3>혼자 달리면 지치기만 함</h3><p>옆에서 밀어주는 사람이 없으니 페이스가 떨어져도 그냥 걷게 됩니다.</p></li><li class="card card-problem"><span class="card-icon" aria-hidden="true">📉</span><h3>기록만 남고 이야기는 없음</h3><p>앱은 거리와 페이스 숫자만 보여줍니다. 오늘 러닝이 어땠는지는 안 남습니다.</p></li></ul></div></section><section id="steps" class="sec sec-steps bg-alt" data-reveal><div class="wrap"><div class="sechead center"><h2>세 가지만 하면 됩니다</h2></div><ul class="cards steps cols-3"><li class="card"><span class="step-n">1</span><h3>플레이리스트와 모드를 고른다</h3><p>평소 듣던 재생목록을 연결하고, 기본·마라톤·인터벌·국가대표 중 오늘의 모드를 고릅니다.</p></li><li class="card"><span class="step-n">2</span><h3>그냥 달린다</h3><p>GPS가 시간·거리·페이스를 계산합니다. 5분마다, 1km마다 상황에 맞는 나레이션이 나옵니다.</p></li><li class="card"><span class="step-n">3</span><h3>이벤트가 러닝을 흔든다</h3><p>라이벌이 쫓아오면 빠른 곡으로, 이상형이 나타나면 사랑 노래로. 음악과 목소리가 상황을 따라 바뀝니다.</p></li></ul></div></section><section id="features" class="sec sec-features bg-base" data-reveal><div class="wrap"><div class="sechead center"><h2>달리는 내내 무슨 일이 벌어집니다</h2><p class="lead">센서 계산은 정확하게, 연출은 과감하게. 재미에 필요한 것만 넣었습니다.</p></div><ul class="cards cols-3"><li class="card"><span class="card-icon" aria-hidden="true">🎽</span><h3>4개의 러닝 모드</h3><p>기본·마라톤·인터벌·국가대표. 모드마다 나레이션 톤과 음악 전환 규칙이 다릅니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">🎲</span><h3>예측 불가 랜덤 이벤트</h3><p>이상형 등장, 라이벌 추격, 페이스 하락 위기. 쿨다운으로 겹치지 않게 터집니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">🎧</span><h3>상황 반응형 음악</h3><p>빨라져야 할 땐 high-energy, 회복 구간엔 recovery. 현재 곡을 끊지 않고 다음 곡부터 반영합니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">📣</span><h3>국가대표 중계 모드</h3><p>스포츠 중계 스타일 나레이션과 고스트 러너로 경기의 주인공이 됩니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">🗣️</span><h3>사전 제작 TTS 가이드</h3><p>&quot;5분째 달리고 있습니다&quot; 같은 안내를 음악 볼륨을 낮췄다 복구하며 재생합니다.</p></li><li class="card"><span class="card-icon" aria-hidden="true">📊</span><h3>러닝 스토리 리포트</h3><p>거리·페이스뿐 아니라 발생한 이벤트와 미션 결과까지 이야기로 남깁니다.</p></li></ul></div></section><section id="preview" class="sec sec-showcase bg-alt" data-reveal><div class="wrap"><div class="split"><div class="split-copy"><h2>지금 바로 러닝 한 장면을 돌려보세요</h2><div class="prose"><p>모드를 고르고 버튼을 누르면 실제 러닝처럼 랜덤 이벤트가 발생합니다. 어떤 나레이션이 나오고 음악이 어떻게 바뀌는지 미리 확인해보세요.</p>
+<p>앱 없이 이 페이지에서 그대로 체험할 수 있습니다.</p></div><div class="ctarow"><a class="btn btn-primary" href="#rfm-preview-run">미리듣기 시작하기</a></div></div><div class="split-art"><div class="rfm-preview" id="rfm-preview">
+  <div class="rfm-phone">
+    <div class="rfm-phone-top"><span class="rfm-dot"></span> RunFunMan</div>
+    <div class="rfm-mode-row" role="tablist" aria-label="러닝 모드 선택">
+      <button class="rfm-mode is-active" data-mode="basic" role="tab" aria-selected="true">기본</button>
+      <button class="rfm-mode" data-mode="marathon" role="tab" aria-selected="false">마라톤</button>
+      <button class="rfm-mode" data-mode="interval" role="tab" aria-selected="false">인터벌</button>
+      <button class="rfm-mode" data-mode="national" role="tab" aria-selected="false">국가대표</button>
+    </div>
+    <div class="rfm-stats">
+      <div class="rfm-stat"><span class="rfm-stat-v" data-field="time">00:00</span><span class="rfm-stat-l">시간</span></div>
+      <div class="rfm-stat"><span class="rfm-stat-v" data-field="dist">0.00</span><span class="rfm-stat-l">거리 (km)</span></div>
+      <div class="rfm-stat"><span class="rfm-stat-v" data-field="pace">--&#39;--&quot;</span><span class="rfm-stat-l">페이스 /km</span></div>
+    </div>
+    <div class="rfm-screen" aria-live="polite">
+      <div class="rfm-event-tag" data-field="tag">대기 중</div>
+      <p class="rfm-narration" data-field="narration">모드를 고르고 아래 버튼을 눌러 러닝을 시작하세요.</p>
+      <div class="rfm-music" data-field="music"><span class="rfm-music-ico">♪</span> <span data-field="track">재생 대기</span></div>
+    </div>
+    <div class="rfm-controls">
+      <button class="btn btn-primary rfm-run" id="rfm-preview-run" type="button">러닝 시작하기</button>
+      <button class="rfm-sound" type="button" aria-pressed="false" aria-label="음성 안내 켜기/끄기">🔊 음성 켜짐</button>
+    </div>
+    <p class="rfm-hint">데모용 시뮬레이션입니다. 나레이션은 브라우저 음성으로 재생됩니다. 실제 GPS·음악 연동은 앱에서 동작합니다.</p>
+  </div>
+</div></div></div></div></section><section id="cta" class="sec sec-cta bg-primary" data-reveal><div class="wrap"><div class="cta-box center"><h2>다음 러닝은 지루하지 않게</h2><p class="lead">달리기가 게임이 되는 순간을 위에서 직접 눌러보세요.</p><div class="ctarow center"><a class="btn btn-primary" href="#preview">미리듣기 체험하기</a></div><p class="note">몇 초면 됩니다</p></div></div></section><footer class="foot"><div class="wrap foot-in"><div><p class="foot-brand">RunFunMan</p><div class="foot-body"><p>부경대학교 AI Agent 1팀이 만들고 있습니다.</p></div></div><nav class="foot-links"><a href="https://github.com">GitHub</a><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></nav></div><div class="wrap foot-legal">© RunFunMan. All rights reserved.</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('[data-menu]'),p=document.querySelector('[data-menu-panel]');
+  if(b&&p){b.addEventListener('click',function(){
+    var o=p.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});
+    p.addEventListener('click',function(e){if(e.target.tagName==='A'){p.classList.remove('open');
+      b.setAttribute('aria-expanded','false');}});}
+
+  var t=document.querySelector('[data-theme-toggle]');
+  function paint(m){document.documentElement.setAttribute('data-theme',m);
+    var l=document.querySelector('[data-icon-light]'),d=document.querySelector('[data-icon-dark]');
+    if(l&&d){l.style.display=m==='dark'?'none':'';d.style.display=m==='dark'?'':'none';}}
+  if(t){
+    var saved=null;try{saved=localStorage.getItem('lp-theme');}catch(e){}
+    var sys=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+    paint(saved||sys);
+    t.addEventListener('click',function(){
+      var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+      paint(n);try{localStorage.setItem('lp-theme',n);}catch(e){}});
+  }
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+      {rootMargin:'0px 0px -8% 0px',threshold:.05});
+    document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
+  }else{document.querySelectorAll('[data-reveal]').forEach(function(el){el.classList.add('in');});}
+
+  function revealAll(){document.querySelectorAll('[data-reveal]').forEach(function(el){el.classList.add('in');});}
+  window.addEventListener('beforeprint',revealAll);
+  if(window.matchMedia){var mq=window.matchMedia('print');
+    if(mq.addEventListener)mq.addEventListener('change',function(e){if(e.matches)revealAll();});}
+
+  var f=document.querySelector('form[data-noaction]');
+  if(f){f.addEventListener('submit',function(e){e.preventDefault();
+    var m=f.querySelector('.form-msg');
+    if(m){m.hidden=false;m.textContent='폼 전송이 아직 연결되지 않았습니다. landing.json 의 form 섹션에 action 값을 넣어주세요.';}});}
+
+  /* ── RunFunMan 인터랙티브 미리듣기 위젯 ── */
+  var rfm=document.getElementById('rfm-preview');
+  if(rfm){
+    var MODES={
+      basic:{label:'기본',events:[
+        {tag:'페이스 안내',n:'5분째 달리고 있습니다. 현재 페이스는 6분 10초입니다.',track:'내 플레이리스트 · 편안한 템포',tone:'neutral'},
+        {tag:'거리 통과',n:'1km 통과. 좋은 출발입니다. 이 리듬 그대로 가세요.',track:'내 플레이리스트 다음 곡',tone:'warm'},
+        {tag:'격려',n:'호흡이 안정적이네요. 딱 지금 페이스가 좋습니다.',track:'normal · 잔잔한 곡',tone:'calm'}
+      ]},
+      marathon:{label:'마라톤',events:[
+        {tag:'목표 페이스',n:'목표보다 4초 빠릅니다. 무리하지 말고 유지하세요.',track:'normal · 러닝 스테디',tone:'neutral'},
+        {tag:'거리 통과',n:'반환점입니다. 절반 왔어요. 후반부를 위해 힘을 아끼세요.',track:'recovery · 호흡 정리곡',tone:'calm'},
+        {tag:'파이널 부스트',n:'마지막 1km. 이제 전부 쏟아부을 시간입니다.',track:'high-energy · 심장 뛰는 곡',tone:'hype'}
+      ]},
+      interval:{label:'인터벌',events:[
+        {tag:'빠른 구간',n:'스퍼트 구간 시작! 30초 동안 전력으로 밀어붙이세요!',track:'high-energy · 빠른 BPM',tone:'hype'},
+        {tag:'회복 구간',n:'회복 구간입니다. 속도를 늦추고, 숨을 고르세요.',track:'recovery · 느린 템포',tone:'soft'},
+        {tag:'세트 완료',n:'3세트 완료. 잘하고 있습니다. 한 세트 더 갈까요?',track:'normal · 다음 세트 대기',tone:'warm'}
+      ]},
+      national:{label:'국가대표',events:[
+        {tag:'중계',n:'선두권 진입! 관중석이 들썩입니다! 지금 이 선수 폼이 최고입니다!',track:'dramatic · 웅장한 스코어',tone:'excited'},
+        {tag:'라이벌',n:'뒤에서 라이벌이 3초 차로 추격합니다! 따라잡히면 안 됩니다!',track:'high-energy · 추격전 BGM',tone:'hype'},
+        {tag:'이상형 등장',n:'앞쪽에 이상형이 나타났습니다. 멋진 모습 보여주세요.',track:'love · 설레는 발라드',tone:'soft'},
+        {tag:'결승선',n:'결승선이 보입니다! 국가대표의 마지막 스퍼트, 지금입니다!',track:'dramatic · 피날레',tone:'excited'}
+      ]}
+    };
+    // 상황별 목소리 프로필: rate=빠르기, pitch=높이, vol=음량, gap=문장 사이 쉼(ms)
+    var TONES={
+      neutral:{rate:1.0,pitch:1.0,vol:1.0,gap:180},
+      calm:   {rate:0.9,pitch:0.92,vol:0.95,gap:320},
+      soft:   {rate:0.86,pitch:1.06,vol:0.9,gap:340},
+      warm:   {rate:0.98,pitch:1.05,vol:1.0,gap:220},
+      hype:   {rate:1.22,pitch:1.14,vol:1.0,gap:110},
+      excited:{rate:1.32,pitch:1.22,vol:1.0,gap:90}
+    };
+    var mode='basic',running=false,timer=null,sec=0,dist=0,evtIdx=0,evtTimer=null;
+    var btns=rfm.querySelectorAll('.rfm-mode');
+    var runBtn=rfm.querySelector('.rfm-run');
+    var screen=rfm.querySelector('.rfm-screen');
+    var fTime=rfm.querySelector('[data-field="time"]');
+    var fDist=rfm.querySelector('[data-field="dist"]');
+    var fPace=rfm.querySelector('[data-field="pace"]');
+    var fTag=rfm.querySelector('[data-field="tag"]');
+    var fNarr=rfm.querySelector('[data-field="narration"]');
+    var fMusic=rfm.querySelector('.rfm-music');
+    var fTrack=rfm.querySelector('[data-field="track"]');
+
+    var soundBtn=rfm.querySelector('.rfm-sound');
+    var muted=false;
+    var synth=window.speechSynthesis||null;
+    var koVoice=null;
+    function pickVoice(){
+      if(!synth)return;
+      var vs=synth.getVoices()||[];
+      koVoice=vs.filter(function(v){return /ko(-|_)?/i.test(v.lang);})[0]||null;
+    }
+    if(synth){pickVoice();if(synth.onvoiceschanged!==undefined)synth.onvoiceschanged=pickVoice;}
+    function jitter(base,amt){return base+(Math.random()*2-1)*amt;}
+    function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
+    // 문장을 구두점 기준으로 쪼개되, 구두점 종류를 기억한다(느낌표는 더 세게 읽기 위해)
+    function splitSentences(text){
+      var parts=[],buf='';
+      for(var i=0;i<text.length;i++){
+        var ch=text[i];buf+=ch;
+        if(ch==='.'||ch==='!'||ch==='?'||ch==='。'){
+          parts.push(buf.trim());buf='';
+        }
+      }
+      if(buf.trim())parts.push(buf.trim());
+      return parts.filter(Boolean);
+    }
+    function speak(text,tone){
+      if(!synth||muted||!text)return;
+      var prof=TONES[tone]||TONES.neutral;
+      try{synth.cancel();}catch(e){}
+      var sentences=splitSentences(text);
+      var idx=0;
+      function next(){
+        if(muted||idx>=sentences.length)return;
+        var s=sentences[idx++];
+        var u=new SpeechSynthesisUtterance(s);
+        u.lang='ko-KR';
+        if(koVoice)u.voice=koVoice;
+        var bang=/[!?]$/.test(s);            // 느낌표/물음표 문장은 더 힘있게
+        var comma=(s.match(/,/g)||[]).length; // 쉼표가 많으면 살짝 느긋하게
+        var rate=prof.rate*(bang?1.08:1)-comma*0.02;
+        var pitch=prof.pitch*(bang?1.06:1);
+        // 사람처럼 매번 미세하게 흔들기
+        u.rate=clamp(jitter(rate,0.06),0.6,1.7);
+        u.pitch=clamp(jitter(pitch,0.07),0.5,1.8);
+        u.volume=clamp(prof.vol,0,1);
+        u.onend=function(){
+          if(idx<sentences.length){
+            // 흥분한 톤은 문장 사이 쉼을 짧게, 차분한 톤은 길게 — 여기에도 약간의 흔들림
+            var gap=Math.max(40,jitter(prof.gap,prof.gap*0.35));
+            setTimeout(next,gap);
+          }
+        };
+        try{synth.speak(u);}catch(e){}
+      }
+      next();
+    }
+    if(soundBtn){
+      if(!synth){soundBtn.disabled=true;soundBtn.textContent='🔇 음성 미지원';soundBtn.title='이 브라우저는 음성 합성을 지원하지 않습니다';}
+      else{
+        soundBtn.addEventListener('click',function(){
+          muted=!muted;
+          soundBtn.textContent=muted?'🔇 음성 꺼짐':'🔊 음성 켜짐';
+          soundBtn.setAttribute('aria-pressed',muted?'true':'false');
+          if(muted)synth.cancel();
+        });
+      }
+    }
+
+    function pad(x){return x<10?'0'+x:''+x;}
+    function fmtTime(s){return pad(Math.floor(s/60))+':'+pad(s%60);}
+    function fmtPace(p){return Math.floor(p/60)+"'"+pad(Math.round(p%60))+'"';}
+
+    btns.forEach(function(bt){bt.addEventListener('click',function(){
+      if(running)return;
+      mode=bt.getAttribute('data-mode');
+      btns.forEach(function(x){x.classList.remove('is-active');x.setAttribute('aria-selected','false');});
+      bt.classList.add('is-active');bt.setAttribute('aria-selected','true');
+      fTag.textContent=MODES[mode].label+' 준비';
+      fNarr.textContent='"러닝 시작하기"를 누르면 '+MODES[mode].label+' 모드로 달립니다.';
+    });});
+
+    function fireEvent(){
+      var evs=MODES[mode].events;var e=evs[evtIdx%evs.length];evtIdx++;
+      fTag.textContent=e.tag;fNarr.textContent=e.n;fTrack.textContent=e.track;
+      fMusic.classList.add('pulse');
+      screen.classList.remove('rfm-flash');void screen.offsetWidth;screen.classList.add('rfm-flash');
+      speak(e.n,e.tone);
+    }
+    function stopRun(finished){
+      running=false;clearInterval(timer);clearTimeout(evtTimer);
+      runBtn.classList.remove('is-running');runBtn.textContent='다시 달리기';
+      fMusic.classList.remove('pulse');
+      if(finished){var msg='러닝 완료! '+fDist.textContent+'킬로미터, '+fTime.textContent+' 기록! 오늘의 스토리가 저장됐습니다.';fTag.textContent='완주';fNarr.textContent=msg;fTrack.textContent='완주 축하 나레이션';speak(msg,'excited');}
+      else if(synth){synth.cancel();}
+    }
+    function tick(){
+      sec++;
+      var paceBase=mode==='interval'?(evtIdx%2?250:400):(mode==='national'?300:mode==='marathon'?330:370);
+      var pace=paceBase+Math.round((Math.random()-0.5)*30);
+      dist+=(1000/pace);
+      fTime.textContent=fmtTime(sec);
+      fDist.textContent=(dist/1000).toFixed(2);
+      fPace.textContent=fmtPace(pace);
+      if(sec>=18){stopRun(true);return;}
+      if(sec%4===0){fireEvent();}
+    }
+    runBtn.addEventListener('click',function(){
+      if(running){stopRun(false);return;}
+      sec=0;dist=0;evtIdx=0;running=true;
+      runBtn.classList.add('is-running');runBtn.textContent='멈추기';
+      var startMsg=MODES[mode].label+' 모드로 출발합니다! 플레이리스트 재생을 시작합니다.';
+      fTag.textContent='러닝 시작';fNarr.textContent=startMsg;
+      fTrack.textContent='내 플레이리스트 · 1번 트랙';fMusic.classList.add('pulse');
+      screen.classList.remove('rfm-flash');void screen.offsetWidth;screen.classList.add('rfm-flash');
+      speak(startMsg,'warm');
+      timer=setInterval(tick,900);
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "모두의 팀빌딩 — 해커톤 팀원, 10분이면 찾습니다",
+    "description": "흩어진 오픈채팅방을 뒤지지 않아도 됩니다. 기술 스택과 참여 가능 시간만 적으면 맞는 팀을 바로 보여줍니다.",
+    "lang": "ko",
+    "favicon": "🤝"
+  },
+  "theme": "violet",
+  "options": { "darkMode": "auto", "radius": "soft", "density": "normal", "animate": true },
+  "brand": {
+    "name": "모두의 팀빌딩",
+    "contactEmail": "hello@teamup.example",
+    "socials": [{ "label": "GitHub", "url": "https://github.com" }]
+  },
+  "sections": [
+    {
+      "type": "nav",
+      "primaryCta": { "label": "무료로 팀 찾기", "href": "#signup" }
+    },
+    {
+      "type": "hero",
+      "eyebrow": "해커톤 참가자를 위한",
+      "heading": "팀원 구하다가 대회가 끝납니다",
+      "subheading": "오픈채팅방 8개를 뒤지는 대신, 기술 스택과 참여 가능 시간만 입력하세요. 조건이 맞는 팀을 10분 안에 보여드립니다.",
+      "primaryCta": { "label": "무료로 팀 찾기", "href": "#signup" },
+      "secondaryCta": { "label": "어떻게 되는지 보기", "href": "#steps", "style": "secondary" },
+      "note": "가입 없이 둘러볼 수 있습니다"
+    },
+    {
+      "type": "stats",
+      "items": [
+        { "value": "10분", "label": "평균 매칭 소요 시간" },
+        { "value": "4개", "label": "베타 참여 해커톤" },
+        { "value": "300명", "label": "2026년 이용자 목표" }
+      ]
+    },
+    {
+      "type": "problem",
+      "id": "problem",
+      "navLabel": "문제",
+      "eyebrow": "왜 필요한가",
+      "heading": "해커톤 첫날은 늘 이렇게 흘러갑니다",
+      "items": [
+        { "icon": "💬", "title": "오픈채팅방이 8개", "body": "어디에 누가 남았는지 아무도 모릅니다. 같은 자기소개를 여덟 번 복붙합니다." },
+        { "icon": "🧩", "title": "스택이 안 맞음", "body": "겨우 팀을 짰더니 프론트만 넷입니다. 백엔드를 다시 구합니다." },
+        { "icon": "⏳", "title": "시간이 안 맞음", "body": "밤새 가능한 사람과 저녁만 되는 사람이 섞여 첫 회의부터 어긋납니다." }
+      ]
+    },
+    {
+      "type": "steps",
+      "id": "steps",
+      "navLabel": "이용 방법",
+      "heading": "세 단계면 끝납니다",
+      "items": [
+        { "title": "프로필 3줄 작성", "body": "잘 다루는 스택, 참여 가능한 시간대, 하고 싶은 역할만 적습니다." },
+        { "title": "맞는 팀 확인", "body": "스택과 시간대가 겹치는 순서로 정렬된 팀 목록을 받습니다." },
+        { "title": "바로 대화 시작", "body": "관심 버튼을 누르면 팀장에게 알림이 갑니다. 서로 수락하면 채팅방이 열립니다." }
+      ]
+    },
+    {
+      "type": "features",
+      "id": "features",
+      "navLabel": "기능",
+      "heading": "매칭만 하고 끝나지 않습니다",
+      "subheading": "팀이 굴러가기 시작할 때까지 필요한 것만 넣었습니다.",
+      "items": [
+        { "icon": "🎯", "title": "스택 기반 정렬", "body": "부족한 역할이 있는 팀을 위로 올려 보여줍니다." },
+        { "icon": "📅", "title": "시간대 겹침 표시", "body": "서로 몇 시간이나 겹치는지 숫자로 보여줍니다." },
+        { "icon": "🔒", "title": "연락처는 나중에", "body": "양쪽이 수락하기 전까지 개인 연락처를 공개하지 않습니다." },
+        { "icon": "📋", "title": "역할 체크리스트", "body": "팀이 짜이면 첫 회의에서 정할 것들을 자동으로 띄웁니다." },
+        { "icon": "🔔", "title": "마감 알림", "body": "대회 제출 마감 24시간 전에 팀 전원에게 알립니다." },
+        { "icon": "🌐", "title": "설치 없이 웹에서", "body": "링크만 열면 됩니다. 앱을 받을 필요가 없습니다." }
+      ]
+    },
+    {
+      "type": "faq",
+      "id": "faq",
+      "navLabel": "FAQ",
+      "heading": "이런 게 궁금하실 겁니다",
+      "items": [
+        { "q": "오픈채팅방이랑 뭐가 다른가요?", "a": "채팅방은 사람을 모으고 끝이지만, 여기서는 **부족한 역할**을 기준으로 팀을 정렬해서 보여줍니다. 프론트만 넷인 팀이 상단에 뜨지 않습니다." },
+        { "q": "제 연락처가 공개되나요?", "a": "아니요. 양쪽이 서로 수락하기 전까지는 닉네임과 스택 정보만 보입니다. 수락 후에도 앱 안 채팅으로만 대화합니다." },
+        { "q": "돈을 내야 하나요?", "a": "개인 참가자는 무료입니다. 대회 주최 측이 참가자 전체 매칭을 의뢰할 때만 유료입니다." },
+        { "q": "혼자인데 팀에 낄 수 있나요?", "a": "그게 주 용도입니다. 팀이 없는 상태로 프로필만 올리면 사람이 필요한 팀 쪽에서 먼저 연락이 옵니다." }
+      ]
+    },
+    {
+      "type": "form",
+      "id": "signup",
+      "navLabel": "신청",
+      "heading": "베타 참여 신청",
+      "subheading": "다음 해커톤 일정에 맞춰 순서대로 초대장을 보내드립니다.",
+      "items": [
+        { "name": "name", "label": "이름 또는 닉네임", "fieldType": "text", "required": true, "placeholder": "홍길동" },
+        { "name": "email", "label": "이메일", "fieldType": "email", "required": true, "placeholder": "you@example.com" },
+        { "name": "stack", "label": "주력 스택", "fieldType": "select", "options": ["프론트엔드", "백엔드", "기획/PM", "디자인", "데이터/AI"] },
+        { "name": "agree", "label": "베타 안내 메일 수신에 동의합니다", "fieldType": "checkbox", "required": true }
+      ],
+      "primaryCta": { "label": "베타 신청하기", "href": "#signup" },
+      "note": "수집한 이메일은 베타 초대 발송에만 쓰고 서비스 출시 후 3개월 내 폐기합니다."
+    },
+    {
+      "type": "cta",
+      "heading": "다음 해커톤은 팀 걱정 없이",
+      "subheading": "첫날 오후를 코드 짜는 데 쓰세요.",
+      "primaryCta": { "label": "베타 신청하기", "href": "#signup" },
+      "note": "1분이면 끝납니다"
+    },
+    {
+      "type": "footer",
+      "items": [
+        { "label": "개인정보 처리방침", "url": "#" },
+        { "label": "이용약관", "url": "#" }
+      ]
+    }
+  ]
+}
