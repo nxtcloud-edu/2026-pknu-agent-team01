@@ -3,6 +3,10 @@ package com.pknu.running.demo
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.pknu.running.game.GameDirector
+import com.pknu.running.game.model.ModeConfig
+import com.pknu.running.game.model.RunningMode
+import com.pknu.running.game.tts.AndroidTtsPlayer
 import com.pknu.running.history.RunHistoryEntry
 import com.pknu.running.history.RunHistoryStore
 import com.pknu.running.tracking.RunningTracker
@@ -28,6 +32,10 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
     private val tracker = RunningTracker(scope = viewModelScope)
     private val historyStore = RunHistoryStore(app)
 
+    // 기능 3: 게임/연출 총괄 + TTS 재생
+    private val director = GameDirector(tracker, viewModelScope)
+    private val tts = AndroidTtsPlayer(app)
+
     val metrics: StateFlow<RunningMetrics> = tracker.metrics
     val state: StateFlow<RunningState> = tracker.state
 
@@ -36,6 +44,18 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
 
     private val _summaryText = MutableStateFlow<String?>(null)
     val summaryText: StateFlow<String?> = _summaryText.asStateFlow()
+
+    /** 선택된 러닝 모드. */
+    private val _mode = MutableStateFlow(RunningMode.BASIC)
+    val mode: StateFlow<RunningMode> = _mode.asStateFlow()
+
+    /** 나레이션 로그 (최신이 뒤). */
+    private val _narrationLog = MutableStateFlow<List<String>>(emptyList())
+    val narrationLog: StateFlow<List<String>> = _narrationLog.asStateFlow()
+
+    fun setMode(m: RunningMode) {
+        _mode.value = m
+    }
 
     /** 요약을 한 번 표시한 뒤 다시 뜨지 않도록 소비한다. */
     fun consumeSummary() {
@@ -51,6 +71,13 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             tracker.events.collect { event ->
                 _eventLog.value = _eventLog.value + formatEvent(event)
+            }
+        }
+        // 나레이션 → TTS 재생 + 로그 기록
+        viewModelScope.launch {
+            director.narrations.collect { n ->
+                tts.speak(n.text)
+                _narrationLog.value = _narrationLog.value + n.text
             }
         }
     }
@@ -73,6 +100,13 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
         provider = fake
         connectProvider(fake)
         tracker.start(RunningTarget(distanceMeter = 1000.0, paceSecPerKm = 330.0))
+        director.start(buildModeConfig())
+    }
+
+    /** 선택된 모드로 연출 설정을 만든다. Fake 데모는 인터벌을 짧게 잡아 관찰하기 쉽게 한다. */
+    private fun buildModeConfig(): ModeConfig {
+        val interval = com.pknu.running.game.model.IntervalConfig(workSec = 20, recoverySec = 15, sets = 4)
+        return ModeConfig(mode = _mode.value, intervalConfig = interval, randomEventEnabled = true)
     }
 
     /**
@@ -83,6 +117,7 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
         provider = realProvider
         connectProvider(realProvider)
         tracker.start(target)
+        director.start(buildModeConfig())
     }
 
     private fun connectProvider(p: LocationProvider) {
@@ -106,6 +141,7 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
         provider?.stop()
         feedJob?.cancel()
         providerJob?.cancel()
+        director.stop()
         val summary = tracker.finish()
         _summaryText.value = buildString {
             appendLine("=== 러닝 요약 ===")
@@ -137,6 +173,7 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
         provider?.stop()
         feedJob?.cancel()
         providerJob?.cancel()
+        director.stop()
         // 이미 러닝 중(RUNNING/PAUSED)이면 먼저 종료하여 tracker를 FINISHED 상태로 만든다.
         // 그래야 이어지는 start()의 전제조건(READY 또는 FINISHED)을 만족한다.
         if (tracker.state.value == RunningState.RUNNING ||
@@ -145,6 +182,7 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
             tracker.finish()
         }
         _eventLog.value = emptyList()
+        _narrationLog.value = emptyList()
         _summaryText.value = null
     }
 
@@ -162,6 +200,8 @@ class DemoViewModel(app: Application) : AndroidViewModel(app) {
     override fun onCleared() {
         super.onCleared()
         provider?.stop()
+        director.stop()
+        tts.shutdown()
     }
 
     companion object {
