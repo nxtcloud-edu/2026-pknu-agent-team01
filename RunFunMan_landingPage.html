@@ -81,6 +81,7 @@ code{background:var(--surface-alt);border:1px solid var(--border);border-radius:
   color:var(--text-muted);text-decoration:none!important}
 .nav-links a:hover{color:var(--text);background:var(--surface-alt)}
 .nav-links a.active{color:var(--primary);background:var(--primary-soft)}
+.nav-links a.active::after{content:"";display:block;height:2px;border-radius:2px;margin-top:3px;background:var(--primary)}
 .nav-act{display:flex;align-items:center;gap:.5rem;margin-left:.5rem}
 /* 화면모드 토글 스위치 */
 .theme-switch{display:inline-flex;align-items:center;gap:.4rem;border:0;background:transparent;
@@ -355,7 +356,7 @@ code{background:var(--surface-alt);border:1px solid var(--border);border-radius:
     document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
   }else{document.querySelectorAll('[data-reveal]').forEach(function(el){el.classList.add('in');});}
 
-  // 스크롤 위치에 따라 헤더 메뉴에 현재 섹션 표시
+  // 스크롤 위치에 따라 헤더 메뉴에 현재 섹션 표시(활성 하이라이트)
   (function(){
     var links=[].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
     if(!links.length)return;
