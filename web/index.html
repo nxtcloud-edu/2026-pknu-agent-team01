@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0E1116" />
+  <title>RunningApp</title>
+  <link rel="icon" href="assets/image_start.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===================== 러닝 페이지 ===================== -->
+  <div class="app page" id="page-running">
+    <!-- 헤더 -->
+    <header class="header">
+      <h1 class="title">러닝 트래킹</h1>
+      <span id="stateBadge" class="badge badge-ready">READY</span>
+    </header>
+
+    <!-- 모드 선택 -->
+    <div id="modeGrid" class="mode-grid">
+      <button class="chip" data-mode="BASIC">기본</button>
+      <button class="chip" data-mode="MARATHON">마라톤</button>
+      <button class="chip" data-mode="INTERVAL">인터벌</button>
+      <button class="chip" data-mode="NATIONAL_TEAM">국가대표</button>
+    </div>
+
+    <!-- 히어로 카드 -->
+    <section class="hero">
+      <img id="runnerImg" class="runner" alt="runner" />
+      <div class="hero-label">거리</div>
+      <div id="distanceValue" class="hero-value">0</div>
+      <div class="hero-unit">meter</div>
+    </section>
+
+    <!-- 주요 지표 -->
+    <div class="stats">
+      <div class="stat"><div class="stat-label">시간</div><div id="timeValue" class="stat-value">--</div></div>
+      <div class="stat"><div class="stat-label">현재 페이스</div><div id="curPaceValue" class="stat-value">--</div></div>
+      <div class="stat"><div class="stat-label">평균 페이스</div><div id="avgPaceValue" class="stat-value">--</div></div>
+    </div>
+
+    <!-- 컨트롤 -->
+    <div class="btn-row">
+      <button id="startFakeBtn" class="btn btn-accent">▶  러닝</button>
+      <button id="startGpsBtn" class="btn btn-surface">＋  GPS 시작</button>
+    </div>
+    <div class="btn-row">
+      <button id="pauseBtn" class="btn btn-outline">Ⅱ 일시정지</button>
+      <button id="resumeBtn" class="btn btn-outline">▶ 재개</button>
+      <button id="finishBtn" class="btn btn-outline">■ 종료</button>
+    </div>
+
+    <!-- 나레이션 -->
+    <h2 class="section-label">🎙 나레이션</h2>
+    <div id="narration" class="card log">모드를 고르고 러닝을 시작하면 안내가 나와요</div>
+
+    <!-- 이벤트 로그 -->
+    <h2 class="section-label">이벤트 로그</h2>
+    <div id="events" class="card log mono">아직 이벤트가 없어요</div>
+  </div>
+
+  <!-- ===================== 음악 페이지 ===================== -->
+  <div class="app page hidden" id="page-music">
+    <header class="header">
+      <h1 class="title">음악</h1>
+      <span id="musicBadge" class="badge badge-ready">IDLE</span>
+    </header>
+
+    <!-- 현재 곡 -->
+    <section class="now-card">
+      <div class="now-label">재생 중</div>
+      <div id="nowTitle" class="now-title">재생 대기 중</div>
+      <div id="nowArtist" class="now-artist">재생 버튼을 눌러 시작하세요</div>
+      <div id="nowTags" class="now-tags"></div>
+    </section>
+
+    <!-- 재생 컨트롤 -->
+    <div class="btn-row">
+      <button id="mPlayBtn" class="btn btn-accent">▶  재생</button>
+      <button id="mNextBtn" class="btn btn-surface">⏭  다음</button>
+    </div>
+    <div class="btn-row">
+      <button id="mPauseBtn" class="btn btn-outline">Ⅱ 일시정지</button>
+      <button id="mModeBtn" class="btn btn-outline">🔀 순차</button>
+    </div>
+
+    <!-- 상황별 음악 -->
+    <h2 class="section-label">상황별 음악</h2>
+    <div id="ruleLabel" class="sub-label">규칙: default</div>
+    <div class="btn-row">
+      <button class="btn btn-outline rule-btn" data-tag="HIGH_ENERGY" data-rule="high-energy">🔥 하이에너지</button>
+      <button class="btn btn-outline rule-btn" data-tag="RECOVERY" data-rule="recovery">🌊 회복</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline rule-btn" data-tag="LOVE" data-rule="love">💗 러브</button>
+      <button class="btn btn-outline rule-btn" data-rule="default">↺ 기본</button>
+    </div>
+
+    <!-- 플레이리스트 -->
+    <h2 class="section-label">플레이리스트</h2>
+    <div id="playlist"></div>
+
+    <!-- YouTube 오디오 재생용 (숨김) -->
+    <div id="ytPlayer" class="yt-hidden"></div>
+  </div>
+
+  <!-- ===================== 기록 페이지 ===================== -->
+  <div class="app page hidden" id="page-history">
+    <header class="header">
+      <h1 class="title">러닝 기록</h1>
+      <button id="sampleBtn" class="badge-outline">샘플</button>
+    </header>
+
+    <!-- 범례 -->
+    <div class="legend">
+      <span class="legend-text">적게</span>
+      <span class="swatch lvl1"></span>
+      <span class="swatch lvl2"></span>
+      <span class="swatch lvl3"></span>
+      <span class="legend-text">많이</span>
+    </div>
+
+    <!-- 월 이동 -->
+    <div class="month-nav">
+      <button id="prevMonth" class="nav-btn">‹</button>
+      <div id="monthLabel" class="month-label"></div>
+      <button id="nextMonth" class="nav-btn">›</button>
+    </div>
+
+    <!-- 요일 헤더 -->
+    <div class="weekday-row">
+      <span class="wd sun">일</span><span class="wd">월</span><span class="wd">화</span>
+      <span class="wd">수</span><span class="wd">목</span><span class="wd">금</span><span class="wd sat">토</span>
+    </div>
+
+    <!-- 날짜 그리드 -->
+    <div id="calGrid" class="cal-grid"></div>
+
+    <!-- 상세 -->
+    <h2 id="detailTitle" class="section-label"></h2>
+    <div id="detail"></div>
+  </div>
+
+  <!-- ===================== 하단 네비게이션 ===================== -->
+  <nav class="bottom-nav">
+    <button class="nav-tab active" data-page="running"><span class="nav-icon">🏃</span><span>러닝</span></button>
+    <button class="nav-tab" data-page="music"><span class="nav-icon">🎵</span><span>음악</span></button>
+    <button class="nav-tab" data-page="history"><span class="nav-icon">📅</span><span>기록</span></button>
+  </nav>
+
+  <!-- 요약 리포트 모달 -->
+  <div id="summaryBackdrop" class="backdrop hidden">
+    <div class="modal">
+      <img class="finish-img" src="assets/image_finish.png" alt="finish" />
+      <pre id="summaryText" class="summary"></pre>
+      <button id="summaryCloseBtn" class="btn btn-accent">확인</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
