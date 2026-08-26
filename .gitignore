@@ -1,14 +1,27 @@
-### macOS
-# Finder metadata
+### Gradle
+build/
+.gradle/
+
+### IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.kiro/
+
+### Kotlin
+*.class
+
+### Java
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+### OS — macOS
 .DS_Store
-
-# Thumbnails
 ._*
-
-# Custom folder icons
-Icon
-
-# Volume root files
+Icon
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -16,3 +29,16 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+
+### OS — Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+### Logs
+*.log
+
+### Local env
+.env
+local.properties
