@@ -1,39 +1,67 @@
 plugins {
-    kotlin("jvm") version "1.9.22"
+    id("com.android.application") version "8.7.0"
+    id("org.jetbrains.kotlin.android") version "1.9.22"
 }
 
-group = "com.runningapp"
-version = "1.0-SNAPSHOT"
+android {
+    namespace = "com.runningapp.music"
+    compileSdk = 34
 
-repositories {
-    mavenCentral()
+    defaultConfig {
+        applicationId = "com.runningapp.music"
+        minSdk = 26
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    sourceSets {
+        getByName("main") {
+            kotlin.srcDirs("src/main/kotlin")
+            manifest.srcFile("src/main/AndroidManifest.xml")
+        }
+        getByName("test") {
+            kotlin.srcDirs("src/test/kotlin")
+        }
+    }
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    // Compose BOM
+    val composeBom = platform("androidx.compose:compose-bom:2024.02.00")
+    implementation(composeBom)
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.activity:activity-compose:1.8.2")
 
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Test
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-kotlin {
-    jvmToolchain(17)
-}
-
-sourceSets {
-    main {
-        kotlin.srcDir("src/main/kotlin")
-    }
-    test {
-        kotlin.srcDir("src/test/kotlin")
-    }
-}
-
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
-    testLogging {
-        events("passed", "skipped", "failed")
-        showStandardStreams = true
-    }
 }
