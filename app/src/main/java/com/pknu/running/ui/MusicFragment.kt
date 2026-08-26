@@ -19,6 +19,7 @@ import com.pknu.running.music.model.MusicTag
 import com.pknu.running.music.model.PlayMode
 import com.pknu.running.music.model.PlaybackState
 import com.pknu.running.music.model.TaggedTrack
+import com.pknu.running.music.provider.MusicProviderType
 import kotlinx.coroutines.launch
 
 /**
@@ -43,6 +44,9 @@ class MusicFragment : Fragment() {
     private lateinit var modeBtn: TextView
     private lateinit var ruleLabel: TextView
     private lateinit var listContainer: LinearLayout
+    private lateinit var spotifyBtn: TextView
+    private lateinit var spotifyStatus: TextView
+    private lateinit var spotifyPlaylistContainer: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -121,6 +125,24 @@ class MusicFragment : Fragment() {
         ))
         root.addView(ctx.verticalSpacer(ctx.dp(24)))
 
+        // 음악 소스 전환
+        root.addView(ctx.sectionLabel("음악 소스"))
+        root.addView(ctx.verticalSpacer(ctx.dp(8)))
+        spotifyBtn = ctx.secondaryButton("🎵 YouTube 모드") { onYouTubeModeClicked() }
+        root.addView(ctx.buttonRow(46, spotifyBtn,
+            ctx.secondaryButton("📱 Mock 모드") { vm.disableYouTubeMode() }
+        ))
+        root.addView(ctx.verticalSpacer(ctx.dp(8)))
+        spotifyStatus = TextView(ctx).apply {
+            setTextColor(Palette.TEXT_SUB)
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+            text = ""
+        }
+        root.addView(spotifyStatus)
+        spotifyPlaylistContainer = LinearLayout(ctx).apply { orientation = LinearLayout.VERTICAL }
+        root.addView(spotifyPlaylistContainer)
+        root.addView(ctx.verticalSpacer(ctx.dp(24)))
+
         // 플레이리스트
         root.addView(ctx.sectionLabel("플레이리스트"))
         root.addView(ctx.verticalSpacer(ctx.dp(10)))
@@ -192,6 +214,16 @@ class MusicFragment : Fragment() {
         modeBtn.text = if (s.playMode == PlayMode.SHUFFLE) "🔀 셔플" else "🔀 순차"
         ruleLabel.text = "규칙: ${s.rule}"
 
+        // 음악 소스 상태
+        val modeLabel = when (s.providerMode) {
+            MusicProviderType.MOCK -> "Mock"
+            MusicProviderType.SPOTIFY -> "Spotify"
+            MusicProviderType.SPOTIFY_YOUTUBE -> "YouTube"
+        }
+        spotifyBtn.text = if (s.providerMode == MusicProviderType.MOCK) "🎵 YouTube 모드" else "✓ $modeLabel"
+        spotifyStatus.text = s.statusMessage ?: ""
+        renderSpotifyPlaylists(s.spotifyPlaylists)
+
         renderList(s.playlist, s.currentTitle)
     }
 
@@ -253,6 +285,49 @@ class MusicFragment : Fragment() {
 
     private fun togglePauseResume() {
         if (vm.ui.value.playbackState == PlaybackState.PAUSED) vm.resume() else vm.pause()
+    }
+
+    // --- YouTube 모드 ---
+
+    private fun onYouTubeModeClicked() {
+        vm.enableYouTubeMode()
+    }
+
+    private fun _updateStatus(msg: String) {
+        spotifyStatus.text = msg
+    }
+
+    private fun renderSpotifyPlaylists(playlists: List<com.pknu.running.music.model.Playlist>) {
+        val ctx = requireContext()
+        spotifyPlaylistContainer.removeAllViews()
+        if (playlists.isEmpty()) return
+
+        spotifyPlaylistContainer.addView(ctx.verticalSpacer(ctx.dp(8)))
+        playlists.forEach { pl ->
+            val row = LinearLayout(ctx).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER_VERTICAL
+                setPadding(ctx.dp(16), ctx.dp(12), ctx.dp(16), ctx.dp(12))
+                background = roundedBg(Palette.SURFACE, ctx.dp(14).toFloat())
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                setOnClickListener { vm.loadSpotifyPlaylist(pl.id) }
+            }
+            row.addView(TextView(ctx).apply {
+                text = "${pl.name} (${pl.trackCount}곡)"
+                setTextColor(Palette.TEXT_MAIN)
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            })
+            row.addView(TextView(ctx).apply {
+                text = "▶"
+                setTextColor(Palette.ACCENT)
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+            })
+            spotifyPlaylistContainer.addView(row)
+            spotifyPlaylistContainer.addView(ctx.verticalSpacer(ctx.dp(6)))
+        }
     }
 
     private fun tagLabel(tag: MusicTag) = when (tag) {

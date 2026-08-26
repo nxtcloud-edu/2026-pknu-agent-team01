@@ -33,28 +33,28 @@ class MockMusicAdapter(
 
     private val mockTracks = mapOf(
         "pl1" to listOf(
-            Track(id = "m1", title = "달려라", artist = "Runner", durationMs = 180_000),
-            Track(id = "m2", title = "Love Song", artist = "Heart", durationMs = 240_000),
-            Track(id = "m3", title = "Sprint!", artist = "Fast", durationMs = 150_000),
-            Track(id = "m4", title = "Chill Wave", artist = "Slow", durationMs = 200_000),
-            Track(id = "m5", title = "Final Boss", artist = "Epic", durationMs = 210_000)
+            Track(id = "m1", title = "Dynamite", artist = "BTS", durationMs = 199_000),
+            Track(id = "m2", title = "눈의 꽃", artist = "박효신", durationMs = 258_000),
+            Track(id = "m3", title = "Next Level", artist = "aespa", durationMs = 227_000),
+            Track(id = "m4", title = "Super Shy", artist = "NewJeans", durationMs = 182_000),
+            Track(id = "m5", title = "FEARLESS", artist = "LE SSERAFIM", durationMs = 187_000)
         ),
         "pl2" to listOf(
-            Track(id = "m6", title = "Sunset", artist = "Calm", durationMs = 220_000),
-            Track(id = "m7", title = "Ocean", artist = "Wave", durationMs = 190_000),
-            Track(id = "m8", title = "Dream", artist = "Sleep", durationMs = 250_000)
+            Track(id = "m6", title = "밤편지", artist = "IU", durationMs = 245_000),
+            Track(id = "m7", title = "Love poem", artist = "IU", durationMs = 230_000),
+            Track(id = "m8", title = "봄날", artist = "BTS", durationMs = 274_000)
         )
     )
 
     private val mockMetadata = mapOf(
-        "m1" to TrackMetadata(trackId = "m1", bpm = 140, genre = "pop", energy = 0.8f),
-        "m2" to TrackMetadata(trackId = "m2", bpm = 85, genre = "ballad", energy = 0.3f),
-        "m3" to TrackMetadata(trackId = "m3", bpm = 160, genre = "electronic", energy = 0.9f),
-        "m4" to TrackMetadata(trackId = "m4", bpm = 95, genre = "ambient", energy = 0.2f),
-        "m5" to TrackMetadata(trackId = "m5", bpm = 135, genre = "cinematic", energy = 0.85f),
-        "m6" to TrackMetadata(trackId = "m6", bpm = 90, genre = "ambient", energy = 0.2f),
-        "m7" to TrackMetadata(trackId = "m7", bpm = 80, genre = "ambient", energy = 0.15f),
-        "m8" to TrackMetadata(trackId = "m8", bpm = 70, genre = "ambient", energy = 0.1f)
+        "m1" to TrackMetadata(trackId = "m1", bpm = 114, genre = "pop", energy = 0.8f),
+        "m2" to TrackMetadata(trackId = "m2", bpm = 78, genre = "ballad", energy = 0.3f),
+        "m3" to TrackMetadata(trackId = "m3", bpm = 150, genre = "pop", energy = 0.9f),
+        "m4" to TrackMetadata(trackId = "m4", bpm = 125, genre = "pop", energy = 0.75f),
+        "m5" to TrackMetadata(trackId = "m5", bpm = 138, genre = "pop", energy = 0.85f),
+        "m6" to TrackMetadata(trackId = "m6", bpm = 70, genre = "ballad", energy = 0.2f),
+        "m7" to TrackMetadata(trackId = "m7", bpm = 75, genre = "ballad", energy = 0.25f),
+        "m8" to TrackMetadata(trackId = "m8", bpm = 80, genre = "ballad", energy = 0.3f)
     )
 
     // --- 인증 ---
