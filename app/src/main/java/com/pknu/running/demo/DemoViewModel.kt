@@ -1,7 +1,10 @@
 package com.pknu.running.demo
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.pknu.running.history.RunHistoryEntry
+import com.pknu.running.history.RunHistoryStore
 import com.pknu.running.tracking.RunningTracker
 import com.pknu.running.tracking.location.FakeLocationProvider
 import com.pknu.running.tracking.location.LocationProvider
@@ -20,9 +23,10 @@ import kotlinx.coroutines.launch
  *
  * 이 클래스는 기능 1 자체가 아니라, 기능 1을 눈으로 확인하기 위한 얇은 데모 래퍼다.
  */
-class DemoViewModel : ViewModel() {
+class DemoViewModel(app: Application) : AndroidViewModel(app) {
 
     private val tracker = RunningTracker(scope = viewModelScope)
+    private val historyStore = RunHistoryStore(app)
 
     val metrics: StateFlow<RunningMetrics> = tracker.metrics
     val state: StateFlow<RunningState> = tracker.state
@@ -32,6 +36,11 @@ class DemoViewModel : ViewModel() {
 
     private val _summaryText = MutableStateFlow<String?>(null)
     val summaryText: StateFlow<String?> = _summaryText.asStateFlow()
+
+    /** 요약을 한 번 표시한 뒤 다시 뜨지 않도록 소비한다. */
+    fun consumeSummary() {
+        _summaryText.value = null
+    }
 
     private var provider: LocationProvider? = null
     private var feedJob: Job? = null
@@ -105,6 +114,22 @@ class DemoViewModel : ViewModel() {
             appendLine("평균 페이스: ${formatPace(summary.averagePaceSecPerKm)}")
             appendLine("최고 페이스: ${formatPace(summary.bestPaceSecPerKm)}")
             appendLine("이벤트 수: ${summary.events.size}")
+        }
+
+        // 캘린더에 표시하기 위해 오늘 날짜로 기록을 저장한다 (거리가 있을 때만).
+        if (summary.totalDistanceMeter > 0.0) {
+            val now = System.currentTimeMillis()
+            historyStore.add(
+                RunHistoryEntry(
+                    epochMillis = now,
+                    dateKey = RunHistoryStore.dateKeyOf(now),
+                    totalDistanceMeter = summary.totalDistanceMeter,
+                    elapsedTimeSec = summary.elapsedTimeSec,
+                    averagePaceSecPerKm = summary.averagePaceSecPerKm,
+                    bestPaceSecPerKm = summary.bestPaceSecPerKm,
+                    eventCount = summary.events.size,
+                )
+            )
         }
     }
 
