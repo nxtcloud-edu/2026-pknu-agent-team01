@@ -1,4 +1,4 @@
-package music.provider
+package com.pknu.running.music.provider
 
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*

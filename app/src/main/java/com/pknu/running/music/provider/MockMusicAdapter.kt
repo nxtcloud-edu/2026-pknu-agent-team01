@@ -1,9 +1,9 @@
-package music.provider
+package com.pknu.running.music.provider
 
-import music.MusicProvider
-import music.model.Playlist
-import music.model.Track
-import music.model.TrackMetadata
+import com.pknu.running.music.MusicProvider
+import com.pknu.running.music.model.Playlist
+import com.pknu.running.music.model.Track
+import com.pknu.running.music.model.TrackMetadata
 import java.util.Timer
 import java.util.TimerTask
 

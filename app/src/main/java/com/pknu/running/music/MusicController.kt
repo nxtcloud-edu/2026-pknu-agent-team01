@@ -1,6 +1,6 @@
-package music
+package com.pknu.running.music
 
-import music.model.*
+import com.pknu.running.music.model.*
 
 /**
  * 음악 모듈의 메인 진입점.

@@ -1,4 +1,4 @@
-package music
+package com.pknu.running.music
 
 /**
  * TTS 재생 시 음악 볼륨을 30%로 낮추고, 종료 후 복구한다.

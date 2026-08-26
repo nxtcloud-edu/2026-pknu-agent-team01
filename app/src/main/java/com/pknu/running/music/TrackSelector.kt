@@ -1,9 +1,9 @@
-package music
+package com.pknu.running.music
 
-import music.model.MusicRule
-import music.model.MusicTag
-import music.model.PlayMode
-import music.model.TaggedTrack
+import com.pknu.running.music.model.MusicRule
+import com.pknu.running.music.model.MusicTag
+import com.pknu.running.music.model.PlayMode
+import com.pknu.running.music.model.TaggedTrack
 
 /**
  * 현재 MusicRule과 재생 이력을 기반으로 다음 곡을 선택한다.
