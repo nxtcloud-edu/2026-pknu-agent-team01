@@ -7,6 +7,8 @@
     <!-- 러닝 중 백그라운드에서도 위치를 계속 받기 위한 포그라운드 서비스 위치 권한 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Spotify Web API 통신 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.location.gps"
@@ -25,6 +27,21 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Spotify OAuth redirect callback 수신 -->
+        <activity
+            android:name=".music.provider.SpotifyAuthCallbackActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="runningapp"
+                    android:host="callback" />
             </intent-filter>
         </activity>
     </application>
